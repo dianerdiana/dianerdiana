@@ -18,6 +18,7 @@ const {
 
 const canonicalUrl = Astro.url.href;
 const pageTitle = title === themeConfig.site.title ? title : `${title} | ${themeConfig.site.title}`;
+const faviconHref = `${themeConfig.assets.favicon}?v=${themeConfig.assets.faviconVersion}`;
 ---
 
 <!doctype html>
@@ -26,7 +27,8 @@ const pageTitle = title === themeConfig.site.title ? title : `${title} | ${theme
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/x-icon" href={themeConfig.assets.favicon} />
+    <link rel="icon" type="image/x-icon" sizes="any" href={faviconHref} />
+    <link rel="shortcut icon" type="image/x-icon" href={faviconHref} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
