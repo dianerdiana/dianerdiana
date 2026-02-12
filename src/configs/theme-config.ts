@@ -4,13 +4,14 @@ export const themeConfig = {
   site: {
     name: "Dian Erdiana",
     title: "Dian Erdiana",
-    description: "Portfolio software engineer yang rapi, terstruktur, dan berfokus pada kualitas implementasi.",
-    language: "id",
+    description: "A structured software engineering portfolio focused on clear execution and implementation quality.",
+    language: "en",
     tagline: "Engineering over aesthetics. Clarity over complexity.",
     email,
   },
   assets: {
     favicon: "/favicon.ico",
+    faviconVersion: "2026-07-06",
     logo: "/logo/logo.svg",
     defaultOgImage: "",
   },
@@ -47,30 +48,30 @@ export const themeConfig = {
   pages: {
     home: {
       title: "Dian Erdiana",
-      description: "Portfolio software engineer yang rapi, terstruktur, dan berfokus pada kualitas implementasi.",
+      description: "A structured software engineering portfolio focused on clear execution and implementation quality.",
     },
     projects: {
       title: "Projects",
-      description: "Kumpulan project Dian Erdiana berdasarkan kategori, problem, solution, hasil, dan teknologi.",
+      description: "A collection of Dian Erdiana projects organized by category, problem, solution, outcome, and technology.",
       eyebrow: "Projects",
       heading: "A categorized view of selected engineering work.",
       descriptionText:
-        "Setiap card dirancang untuk memperlihatkan konteks masalah, keputusan implementasi, hasil, dan teknologi yang dipakai supaya project mudah dibandingkan.",
+        "Each card is designed to show the problem context, implementation decisions, outcomes, and technologies used so projects are easy to compare.",
       indexTitle: "Project index",
     },
     blogs: {
       title: "Blogs",
-      description: "Kumpulan artikel Dian Erdiana tentang engineering, frontend, portfolio, dan keputusan teknis.",
+      description: "A collection of Dian Erdiana articles about engineering, frontend work, portfolios, and technical decisions.",
       eyebrow: "Blogs",
       heading: "Notes on engineering decisions and clear interfaces.",
       descriptionText:
-        "Artikel singkat tentang bagaimana struktur, tradeoff, dan detail interface bisa membuat software terasa lebih rapi dan mudah dipercaya.",
+        "Short articles about how structure, tradeoffs, and interface details can make software feel clearer and more trustworthy.",
       filtersLabel: "Blog filters",
       sortTitle: "Sorting",
       topicTitle: "Topics",
       allTopicsLabel: "All topics",
       perPageLabel: "10 articles per page",
-      emptyState: "Tidak ada article yang cocok dengan topic terpilih.",
+      emptyState: "No articles match the selected topic.",
       sortOptions: [
         { label: "Newest", value: "newest" },
         { label: "Oldest", value: "oldest" },
@@ -89,7 +90,7 @@ export const themeConfig = {
       eyebrow: "Full-stack developer",
       heading: "Building reliable software with calm, structured execution.",
       description:
-        "Saya membangun aplikasi web yang rapi, mudah dipelihara, dan berfokus pada kualitas keputusan teknis. Portfolio ini menyoroti proses berpikir, hasil terukur, dan cara saya menyelesaikan masalah engineering.",
+        "I build web applications that are clean, maintainable, and grounded in strong technical decisions. This portfolio highlights my thinking process, measurable outcomes, and approach to solving engineering problems.",
       primaryCta: { label: "View Projects", href: "/projects" },
       secondaryCta: { label: "Contact", href: "#contact" },
       snapshot: {
@@ -121,15 +122,15 @@ export const themeConfig = {
       eyebrow: "About",
       heading: "Focused on dependable engineering.",
       paragraphs: [
-        "Saya melihat software engineering sebagai pekerjaan yang menuntut kejelasan: memahami masalah, memilih tradeoff yang tepat, lalu mengeksekusi dengan struktur yang mudah dipahami oleh tim berikutnya.",
-        "Website ini dirancang untuk menampilkan cara berpikir tersebut secara tenang. Home memberi kesan pertama, sementara project detail nantinya menjadi pusat bukti: problem, keputusan teknis, hasil, dan pelajaran yang didapat.",
+        "I see software engineering as work that depends on clarity: understanding the problem, choosing the right tradeoffs, and executing with a structure that the next team can understand.",
+        "This website is designed to present that way of thinking with calm focus. The homepage creates the first impression, while project details become the evidence: problems, technical decisions, outcomes, and lessons learned.",
       ],
     },
     skills: {
       eyebrow: "Skills",
       heading: "A practical, maintainable stack.",
       description:
-        "Skill ditata berdasarkan kategori kerja agar mudah dipindai oleh recruiter dan tetap siap diperluas dengan data yang lebih spesifik pada tahap berikutnya.",
+        "Skills are organized by work category so recruiters can scan them easily while leaving room for more specific data in future iterations.",
       groups: [
         { title: "Frontend", items: ["Astro", "React", "TypeScript", "TailwindCSS"] },
         { title: "Backend", items: ["API design", "Authentication", "Validation", "Service structure"] },
@@ -143,24 +144,24 @@ export const themeConfig = {
       eyebrow: "Experience",
       heading: "A workflow centered on impact.",
       description:
-        "Section ini disiapkan sebagai timeline. Sampai data pengalaman profesional ditambahkan, kontennya menampilkan pola kerja yang akan menjadi dasar penulisan impact, bukan job description.",
+        "This section is prepared as a timeline. Until professional experience data is added, the content shows the working patterns that will support impact-focused writing instead of job-description copy.",
       entries: [
         {
           phase: "Problem framing",
           title: "Start with context before implementation",
-          description: "Memahami tujuan bisnis, pengguna, batasan teknis, dan definisi selesai sebelum memilih solusi.",
+          description: "Understand business goals, users, technical constraints, and the definition of done before choosing a solution.",
         },
         {
           phase: "System design",
           title: "Prefer clear structure over clever abstractions",
           description:
-            "Membuat modul, data flow, dan interface yang bisa dibaca ulang tanpa bergantung pada ingatan pembuatnya.",
+            "Create modules, data flows, and interfaces that can be understood later without depending on the original author's memory.",
         },
         {
           phase: "Delivery",
           title: "Ship in increments with visible quality gates",
           description:
-            "Mengutamakan build yang stabil, perubahan terukur, dan dokumentasi keputusan penting saat kompleksitas naik.",
+            "Prioritize stable builds, measurable changes, and documentation for important decisions as complexity grows.",
         },
       ],
     },
@@ -168,26 +169,26 @@ export const themeConfig = {
       eyebrow: "Featured Projects",
       heading: "Project details will carry the portfolio.",
       description:
-        "Card proyek dibuat besar dan terstruktur agar nanti mudah diganti dengan studi kasus nyata tanpa mengubah sistem layout.",
+        "Project cards are intentionally large and structured so they can later be replaced with real case studies without changing the layout system.",
       cta: { label: "View all projects", href: "/projects" },
     },
     articles: {
       eyebrow: "Articles",
       heading: "Notes on craft and clarity.",
-      description: "Catatan singkat tentang engineering, interface, dan cara mengambil keputusan teknis.",
+      description: "Short notes on engineering, interfaces, and technical decision-making.",
       cta: { label: "View all articles", href: "/blogs" },
     },
     certificates: {
       eyebrow: "Certificates",
       heading: "Relevant proof, carefully curated.",
       description:
-        "Grid ini sengaja ringkas agar sertifikat tidak mengambil alih halaman. Data final dapat diganti dengan sertifikat yang benar-benar relevan.",
+        "This grid is intentionally concise so certificates do not take over the page. Final data can be replaced with certificates that are genuinely relevant.",
     },
     contact: {
       eyebrow: "Contact",
       heading: "Let us talk when clarity matters.",
       description:
-        "Untuk interview, kolaborasi, atau diskusi teknis, gunakan salah satu kanal berikut. Form di kanan hanya dimuat saat section ini terlihat agar halaman tetap ringan.",
+        "For interviews, collaboration, or technical discussions, use one of the channels below. The form on the right only loads when this section is visible to keep the page lightweight.",
     },
   },
 } as const;
