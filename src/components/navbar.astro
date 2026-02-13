@@ -7,7 +7,7 @@ const navItems = themeConfig.navigation.items;
 <header class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-background/88 backdrop-blur-md">
   <nav class="container flex h-20 items-center justify-between" aria-label="Primary navigation">
     <a class="text-[15px] font-semibold text-text-primary no-underline" href={themeConfig.links.home} aria-label={`${themeConfig.site.name} home`}>
-      {themeConfig.site.name}
+      <img src={themeConfig.assets.logo} alt={`${themeConfig.site.name} logo`} class="inline-block h-6 w-6 mr-2" /> {themeConfig.site.name}
     </a>
 
     <input class="peer sr-only" type="checkbox" id="nav-toggle" aria-label="Toggle navigation" />
