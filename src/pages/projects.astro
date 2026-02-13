@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/base-layout.astro";
 import ProjectCard from "../components/project-card.astro";
 import Tabs from "../components/tabs.astro";
+import { themeConfig } from "../configs/theme-config";
 
 const categories = (await getCollection("projectCategories")).sort(
   (current, next) => current.data.order - next.data.order,
@@ -18,25 +19,24 @@ const tabs = categories.map((category) => ({
 ---
 
 <BaseLayout
-  title="Projects"
-  description="Kumpulan project Dian Erdiana berdasarkan kategori, problem, solution, hasil, dan teknologi."
+  title={themeConfig.pages.projects.title}
+  description={themeConfig.pages.projects.description}
 >
   <section class="pt-32 pb-24 md:pt-40 md:pb-section">
     <div class="container">
       <div class="grid gap-10 lg:grid-cols-[minmax(0,760px)_minmax(280px,1fr)] lg:items-end">
         <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Projects</p>
+          <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{themeConfig.pages.projects.eyebrow}</p>
           <h1 class="mt-4 text-4xl font-bold leading-tight text-text-primary md:text-[56px] md:leading-[1.1]">
-            A categorized view of selected engineering work.
+            {themeConfig.pages.projects.heading}
           </h1>
           <p class="mt-6 text-[17px] leading-[1.7] text-text-secondary">
-            Setiap card dirancang untuk memperlihatkan konteks masalah, keputusan implementasi, hasil, dan teknologi
-            yang dipakai supaya project mudah dibandingkan.
+            {themeConfig.pages.projects.descriptionText}
           </p>
         </div>
 
         <div class="rounded-card border border-border bg-surface p-6 shadow-soft">
-          <p class="text-sm font-semibold text-text-primary">Project index</p>
+          <p class="text-sm font-semibold text-text-primary">{themeConfig.pages.projects.indexTitle}</p>
           <dl class="mt-5 grid grid-cols-2 gap-4">
             <div>
               <dt class="text-sm text-text-secondary">Projects</dt>
