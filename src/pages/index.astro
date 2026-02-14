@@ -8,11 +8,12 @@ import ExperienceSection from "../components/experience-section.astro";
 import FeaturedProjectsSection from "../components/featured-projects-section.astro";
 import HeroSection from "../components/hero-section.astro";
 import SkillsSection from "../components/skills-section.astro";
+import { themeConfig } from "../configs/theme-config";
 ---
 
 <BaseLayout
-  title="Dian Erdiana"
-  description="Portfolio software engineer yang rapi, terstruktur, dan berfokus pada kualitas implementasi."
+  title={themeConfig.pages.home.title}
+  description={themeConfig.pages.home.description}
 >
   <HeroSection />
   <AboutSection />
