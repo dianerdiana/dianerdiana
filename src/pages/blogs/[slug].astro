@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/base-layout.astro";
+import { themeConfig } from "../../configs/theme-config";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
@@ -26,7 +27,9 @@ const formattedViews = new Intl.NumberFormat("en-US").format(article.data.views)
 <BaseLayout title={article.data.title} description={article.data.description} image={article.data.image}>
   <article class="pt-32 pb-24 md:pt-40 md:pb-section">
     <div class="container">
-      <a class="text-sm font-semibold text-text-secondary no-underline hover:text-primary" href="/blogs">Back to blogs</a>
+      <a class="text-sm font-semibold text-text-secondary no-underline hover:text-primary" href={themeConfig.pages.articleDetail.backHref}>
+        {themeConfig.pages.articleDetail.backLabel}
+      </a>
 
       <header class="mt-8 max-w-content">
         <div class="flex flex-wrap gap-2">
