@@ -1,40 +1,17 @@
 ---
-const skillGroups = [
-  {
-    title: "Frontend",
-    items: ["Astro", "React", "TypeScript", "TailwindCSS"],
-  },
-  {
-    title: "Backend",
-    items: ["API design", "Authentication", "Validation", "Service structure"],
-  },
-  {
-    title: "Database",
-    items: ["Relational data", "Schema design", "Query planning", "Migrations"],
-  },
-  {
-    title: "Cloud",
-    items: ["Deployment", "Environment config", "Static delivery", "Runtime basics"],
-  },
-  {
-    title: "DevOps",
-    items: ["Build checks", "Version control", "Release discipline", "Debugging"],
-  },
-  {
-    title: "Tools",
-    items: ["Git", "Node.js", "npm", "Documentation"],
-  },
-];
+import { themeConfig } from "../configs/theme-config";
+
+const skills = themeConfig.sections.skills;
+const skillGroups = skills.groups;
 ---
 
 <section id="skills" class="py-24 md:py-section">
   <div class="container">
     <div class="mb-12 max-w-[760px]">
-      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Skills</p>
-      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">A practical, maintainable stack.</h2>
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{skills.eyebrow}</p>
+      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">{skills.heading}</h2>
       <p class="mt-5 text-text-secondary">
-        Skill ditata berdasarkan kategori kerja agar mudah dipindai oleh recruiter dan tetap siap diperluas dengan data
-        yang lebih spesifik pada tahap berikutnya.
+        {skills.description}
       </p>
     </div>
 
