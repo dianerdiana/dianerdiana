@@ -1,27 +1,32 @@
+---
+import { themeConfig } from "../configs/theme-config";
+
+const hero = themeConfig.sections.hero;
+---
+
 <section class="pt-32 pb-24 md:pt-40 md:pb-32">
   <div class="container grid gap-12 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
     <div class="max-w-[760px]">
-      <p class="mb-5 text-sm font-semibold uppercase tracking-[0.12em] text-primary">Full-stack developer</p>
+      <p class="mb-5 text-sm font-semibold uppercase tracking-[0.12em] text-primary">{hero.eyebrow}</p>
       <h1 class="text-4xl font-bold leading-tight text-text-primary md:text-[56px] md:leading-[1.1]">
-        Building reliable software with calm, structured execution.
+        {hero.heading}
       </h1>
       <p class="mt-6 max-w-[640px] text-[17px] leading-[1.7] text-text-secondary">
-        Saya membangun aplikasi web yang rapi, mudah dipelihara, dan berfokus pada kualitas keputusan teknis.
-        Portfolio ini menyoroti proses berpikir, hasil terukur, dan cara saya menyelesaikan masalah engineering.
+        {hero.description}
       </p>
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <a
           class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-5 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:bg-hover hover:text-white"
-          href="/projects"
+          href={hero.primaryCta.href}
         >
-          View Projects
+          {hero.primaryCta.label}
         </a>
         <a
           class="inline-flex h-12 items-center justify-center rounded-md border border-border bg-surface px-5 text-sm font-semibold text-text-primary no-underline transition duration-200 ease-out hover:border-primary hover:text-primary"
-          href="#contact"
+          href={hero.secondaryCta.href}
         >
-          Contact
+          {hero.secondaryCta.label}
         </a>
       </div>
     </div>
@@ -29,40 +34,32 @@
     <div class="rounded-card border border-border bg-surface p-6 shadow-soft">
       <div class="flex items-center justify-between border-b border-border pb-4">
         <div>
-          <p class="text-sm font-semibold text-text-primary">Engineering Snapshot</p>
-          <p class="text-sm text-text-secondary">Portfolio foundation</p>
+          <p class="text-sm font-semibold text-text-primary">{hero.snapshot.title}</p>
+          <p class="text-sm text-text-secondary">{hero.snapshot.subtitle}</p>
         </div>
-        <span class="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">Available</span>
+        <span class="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">{hero.snapshot.status}</span>
       </div>
 
       <div class="grid gap-4 py-6">
-        <div class="rounded-lg border border-border bg-background p-4">
-          <p class="text-sm font-semibold text-text-primary">Focus</p>
-          <p class="mt-1 text-sm text-text-secondary">Maintainable products, practical architecture, clean delivery.</p>
-        </div>
-        <div class="rounded-lg border border-border bg-background p-4">
-          <p class="text-sm font-semibold text-text-primary">Current Stack</p>
-          <p class="mt-1 text-sm text-text-secondary">Astro, React, TailwindCSS, TypeScript, database-backed apps.</p>
-        </div>
-        <div class="rounded-lg border border-border bg-background p-4">
-          <p class="text-sm font-semibold text-text-primary">Working Principle</p>
-          <p class="mt-1 text-sm text-text-secondary">Craftsmanship over hype. Clarity over complexity.</p>
-        </div>
+        {
+          hero.snapshot.items.map((item) => (
+            <div class="rounded-lg border border-border bg-background p-4">
+              <p class="text-sm font-semibold text-text-primary">{item.title}</p>
+              <p class="mt-1 text-sm text-text-secondary">{item.description}</p>
+            </div>
+          ))
+        }
       </div>
 
       <div class="grid grid-cols-3 gap-3 border-t border-border pt-4">
-        <div>
-          <p class="text-xl font-bold text-text-primary">01</p>
-          <p class="text-xs text-text-secondary">Foundation</p>
-        </div>
-        <div>
-          <p class="text-xl font-bold text-text-primary">00</p>
-          <p class="text-xs text-text-secondary">Client JS</p>
-        </div>
-        <div>
-          <p class="text-xl font-bold text-text-primary">SSG</p>
-          <p class="text-xs text-text-secondary">Output</p>
-        </div>
+        {
+          hero.snapshot.metrics.map((metric) => (
+            <div>
+              <p class="text-xl font-bold text-text-primary">{metric.value}</p>
+              <p class="text-xs text-text-secondary">{metric.label}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
