@@ -1,19 +1,15 @@
 ---
-const links = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/" },
-  { label: "GitHub", href: "https://github.com/" },
-  { label: "Email", href: "mailto:hello@dianerdiana.dev" },
-  { label: "Resume", href: "/" },
-];
+import { themeConfig } from "../configs/theme-config";
 
+const links = themeConfig.socialLinks;
 const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-border bg-surface">
   <div class="container flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
     <div>
-      <p class="text-sm font-semibold text-text-primary">Dian Erdiana</p>
-      <p class="mt-1 text-sm text-text-secondary">Engineering over aesthetics. Clarity over complexity.</p>
+      <p class="text-sm font-semibold text-text-primary">{themeConfig.site.name}</p>
+      <p class="mt-1 text-sm text-text-secondary">{themeConfig.site.tagline}</p>
     </div>
 
     <div class="flex flex-wrap gap-x-5 gap-y-2">
