@@ -1,24 +1,25 @@
 ---
 import { getCollection } from "astro:content";
 import ProjectCard from "./project-card.astro";
+import { themeConfig } from "../configs/theme-config";
 
 const projects = (await getCollection("projects")).sort((current, next) => current.data.order - next.data.order);
 const categories = await getCollection("projectCategories");
 const categoryBySlug = new Map(categories.map((category) => [category.id, category.data.name]));
+const section = themeConfig.sections.featuredProjects;
 ---
 
 <section id="projects" class="py-24 md:py-section">
   <div class="container">
     <div class="mb-12 max-w-[760px]">
-      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Featured Projects</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{section.eyebrow}</p>
       <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">
-        Project details will carry the portfolio.
+        {section.heading}
       </h2>
       <p class="mt-5 text-text-secondary">
-        Card proyek dibuat besar dan terstruktur agar nanti mudah diganti dengan studi kasus nyata tanpa mengubah sistem
-        layout.
+        {section.description}
       </p>
-      <a class="mt-5 inline-flex text-sm font-semibold no-underline" href="/projects">View all projects</a>
+      <a class="mt-5 inline-flex text-sm font-semibold no-underline" href={section.cta.href}>{section.cta.label}</a>
     </div>
 
     <div class="grid gap-5 lg:grid-cols-2">
