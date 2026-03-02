@@ -1,36 +1,19 @@
 ---
-const entries = [
-  {
-    phase: "Problem framing",
-    title: "Start with context before implementation",
-    description:
-      "Memahami tujuan bisnis, pengguna, batasan teknis, dan definisi selesai sebelum memilih solusi.",
-  },
-  {
-    phase: "System design",
-    title: "Prefer clear structure over clever abstractions",
-    description:
-      "Membuat modul, data flow, dan interface yang bisa dibaca ulang tanpa bergantung pada ingatan pembuatnya.",
-  },
-  {
-    phase: "Delivery",
-    title: "Ship in increments with visible quality gates",
-    description:
-      "Mengutamakan build yang stabil, perubahan terukur, dan dokumentasi keputusan penting saat kompleksitas naik.",
-  },
-];
+import { themeConfig } from "../configs/theme-config";
+
+const experience = themeConfig.sections.experience;
+const entries = experience.entries;
 ---
 
 <section id="experience" class="border-y border-border bg-surface py-24 md:py-section">
   <div class="container">
     <div class="mb-12 max-w-[760px]">
-      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Experience</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{experience.eyebrow}</p>
       <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">
-        A workflow centered on impact.
+        {experience.heading}
       </h2>
       <p class="mt-5 text-text-secondary">
-        Section ini disiapkan sebagai timeline. Sampai data pengalaman profesional ditambahkan, kontennya menampilkan
-        pola kerja yang akan menjadi dasar penulisan impact, bukan job description.
+        {experience.description}
       </p>
     </div>
 
