@@ -1,23 +1,18 @@
 ---
+import { themeConfig } from "../configs/theme-config";
 
-const contactLinks = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/" },
-  { label: "GitHub", href: "https://github.com/" },
-  { label: "Email", href: "mailto:hello@dianerdiana.dev" },
-  { label: "Resume", href: "/" },
-];
+const contactLinks = themeConfig.socialLinks;
 ---
 
 <section id="contact" class="border-t border-border bg-surface py-24 md:py-section">
   <div class="container grid gap-10 lg:grid-cols-[minmax(0,760px)_minmax(280px,1fr)] lg:items-start">
     <div>
-      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Contact</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{themeConfig.sections.contact.eyebrow}</p>
       <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">
-        Let us talk when clarity matters.
+        {themeConfig.sections.contact.heading}
       </h2>
       <p class="mt-5 text-text-secondary">
-        Untuk interview, kolaborasi, atau diskusi teknis, gunakan salah satu kanal berikut. Form di kanan hanya dimuat
-        saat section ini terlihat agar halaman tetap ringan.
+        {themeConfig.sections.contact.description}
       </p>
     </div>
 
