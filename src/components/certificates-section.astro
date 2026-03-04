@@ -1,17 +1,18 @@
 ---
 import { getCollection } from "astro:content";
+import { themeConfig } from "../configs/theme-config";
 
 const certificates = (await getCollection("certificates")).sort((current, next) => current.data.order - next.data.order);
+const section = themeConfig.sections.certificates;
 ---
 
 <section id="certificates" class="py-24 md:py-section">
   <div class="container">
     <div class="mb-12 max-w-[760px]">
-      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Certificates</p>
-      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">Relevant proof, carefully curated.</h2>
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{section.eyebrow}</p>
+      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">{section.heading}</h2>
       <p class="mt-5 text-text-secondary">
-        Grid ini sengaja ringkas agar sertifikat tidak mengambil alih halaman. Data final dapat diganti dengan sertifikat
-        yang benar-benar relevan.
+        {section.description}
       </p>
     </div>
 
