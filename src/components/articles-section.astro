@@ -1,17 +1,19 @@
 ---
 import { getCollection } from "astro:content";
+import { themeConfig } from "../configs/theme-config";
 
 const articles = (await getCollection("articles"))
   .sort((current, next) => new Date(next.data.publishedAt).getTime() - new Date(current.data.publishedAt).getTime())
   .slice(0, 3);
+const section = themeConfig.sections.articles;
 ---
 
 <section id="articles" class="border-y border-border bg-surface py-24 md:py-section">
   <div class="container">
     <div class="mb-12 max-w-[760px]">
-      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Articles</p>
-      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">Notes on craft and clarity.</h2>
-      <p class="mt-5 text-text-secondary">Catatan singkat tentang engineering, interface, dan cara mengambil keputusan teknis.</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{section.eyebrow}</p>
+      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">{section.heading}</h2>
+      <p class="mt-5 text-text-secondary">{section.description}</p>
     </div>
 
     <div class="grid gap-4 md:grid-cols-3">
@@ -36,7 +38,7 @@ const articles = (await getCollection("articles"))
     </div>
 
     <div class="mt-8">
-      <a class="text-sm font-semibold text-primary no-underline hover:text-hover" href="/blogs">View all articles</a>
+      <a class="text-sm font-semibold text-primary no-underline hover:text-hover" href={section.cta.href}>{section.cta.label}</a>
     </div>
   </div>
 </section>
