@@ -1,4 +1,5 @@
 import { useMemo, useState, type FormEvent } from "react";
+import { themeConfig } from "../../configs/theme-config";
 
 type FormState = {
   name: string;
@@ -63,7 +64,7 @@ export default function ContactForm() {
     setStatus("ready");
   }
 
-  const mailtoHref = `mailto:hello@dianerdiana.dev?subject=${encodeURIComponent(
+  const mailtoHref = `${themeConfig.links.email}?subject=${encodeURIComponent(
     `Portfolio inquiry from ${form.name.trim()}`,
   )}&body=${encodeURIComponent(`${form.message.trim()}\n\nFrom: ${form.name.trim()} <${form.email.trim()}>`)}`;
 
