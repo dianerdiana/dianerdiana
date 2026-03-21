@@ -30,15 +30,27 @@ const navItems = [
       {
         navItems.map((item) => (
           <a
-            class="rounded-md px-3 py-2 text-sm font-medium text-text-secondary no-underline transition duration-200 ease-out hover:bg-slate-100 hover:text-text-primary"
+            class="rounded-md px-3 py-2 text-sm font-medium text-text-secondary no-underline transition duration-200 ease-out hover:bg-surface hover:text-text-primary"
             href={item.href}
           >
             {item.label}
           </a>
         ))
       }
+      <button
+        class="theme-toggle flex h-10 items-center gap-2 rounded-md border border-border bg-surface px-3 text-sm font-semibold text-text-secondary transition duration-200 ease-out hover:border-primary hover:text-primary md:ml-2"
+        type="button"
+        data-theme-toggle
+        aria-label="Aktifkan mode gelap"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle__track" aria-hidden="true">
+          <span class="theme-toggle__thumb"></span>
+        </span>
+        <span data-theme-toggle-label>Terang</span>
+      </button>
       <a
-        class="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:bg-hover hover:text-white md:ml-2"
+        class="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:bg-hover hover:text-white"
         href="mailto:hello@dianerdiana.dev"
       >
         Hire Me
@@ -46,3 +58,46 @@ const navItems = [
     </div>
   </nav>
 </header>
+
+<script>
+  const setupThemeToggle = () => {
+    const root = document.documentElement;
+    const toggles = Array.from(document.querySelectorAll("[data-theme-toggle]")).filter(
+      (toggle) => toggle instanceof HTMLButtonElement,
+    );
+
+    const syncToggles = () => {
+      const isDark = root.classList.contains("dark");
+      toggles.forEach((toggle) => {
+        const label = toggle.querySelector("[data-theme-toggle-label]");
+        toggle.setAttribute("aria-pressed", String(isDark));
+        toggle.setAttribute("aria-label", isDark ? "Aktifkan mode terang" : "Aktifkan mode gelap");
+        if (label) {
+          label.textContent = isDark ? "Gelap" : "Terang";
+        }
+      });
+    };
+
+    toggles.forEach((toggle) => {
+      if (toggle.dataset.themeToggleReady === "true") {
+        return;
+      }
+
+      toggle.dataset.themeToggleReady = "true";
+      toggle.addEventListener("click", () => {
+        const isDark = root.classList.toggle("dark");
+        try {
+          localStorage.setItem("theme", isDark ? "dark" : "light");
+        } catch {
+          // Theme still changes for the current page when storage is unavailable.
+        }
+        syncToggles();
+      });
+    });
+
+    syncToggles();
+  };
+
+  setupThemeToggle();
+  document.addEventListener("astro:page-load", setupThemeToggle);
+</script>
