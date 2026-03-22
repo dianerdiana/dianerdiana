@@ -34,6 +34,15 @@ const pageTitle = title === "Dian Erdiana" ? title : `${title} | Dian Erdiana`;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     {image && <meta property="og:image" content={new URL(image, Astro.url).href} />}
+
+    <script is:inline>
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        document.documentElement.classList.toggle("dark", savedTheme === "dark");
+      } catch {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
   </head>
   <body class="bg-background text-text-primary">
     <Navbar />
