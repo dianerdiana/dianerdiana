@@ -1,0 +1,31 @@
+---
+const links = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/" },
+  { label: "GitHub", href: "https://github.com/" },
+  { label: "Email", href: "mailto:hello@dianerdiana.dev" },
+  { label: "Resume", href: "/" },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer id="contact" class="border-t border-border bg-surface">
+  <div class="container flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
+    <div>
+      <p class="text-sm font-semibold text-text-primary">Dian Erdiana</p>
+      <p class="mt-1 text-sm text-text-secondary">Engineering over aesthetics. Clarity over complexity.</p>
+    </div>
+
+    <div class="flex flex-wrap gap-x-5 gap-y-2">
+      {
+        links.map((link) => (
+          <a class="text-sm font-medium text-text-secondary no-underline hover:text-primary" href={link.href}>
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="text-sm text-text-secondary">© {year}</p>
+  </div>
+</footer>
