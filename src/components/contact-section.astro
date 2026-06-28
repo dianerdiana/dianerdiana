@@ -1,0 +1,39 @@
+---
+const contactLinks = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/" },
+  { label: "GitHub", href: "https://github.com/" },
+  { label: "Email", href: "mailto:hello@dianerdiana.dev" },
+  { label: "Resume", href: "/" },
+];
+---
+
+<section id="contact" class="border-t border-border bg-surface py-24 md:py-section">
+  <div class="container grid gap-10 lg:grid-cols-[minmax(0,760px)_minmax(280px,1fr)] lg:items-start">
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Contact</p>
+      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">
+        Let us talk when clarity matters.
+      </h2>
+      <p class="mt-5 text-text-secondary">
+        Untuk interview, kolaborasi, atau diskusi teknis, gunakan salah satu kanal berikut. Section ini tetap statis agar
+        cepat, sederhana, dan mudah dipelihara.
+      </p>
+    </div>
+
+    <div class="rounded-card border border-border bg-background p-6">
+      <div class="grid gap-3">
+        {
+          contactLinks.map((link) => (
+            <a
+              class="flex items-center justify-between rounded-md border border-border bg-surface px-4 py-3 text-sm font-semibold text-text-primary no-underline transition duration-200 ease-out hover:border-primary hover:text-primary"
+              href={link.href}
+            >
+              <span>{link.label}</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
