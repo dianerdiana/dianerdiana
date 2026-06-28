@@ -1,20 +1,7 @@
 ---
-const projects = [
-  {
-    title: "Portfolio Architecture",
-    problem: "Portfolio perlu terasa profesional tanpa bergantung pada efek visual berlebihan.",
-    solution: "Menggunakan Astro untuk konten statis, Tailwind token untuk konsistensi, dan React hanya untuk island.",
-    result: "Halaman awal tetap ringan, jelas, dan siap diperluas menjadi project detail yang lebih kuat.",
-    technologies: ["Astro", "TailwindCSS", "TypeScript"],
-  },
-  {
-    title: "Project Detail Framework",
-    problem: "Recruiter butuh melihat cara berpikir teknis, bukan hanya daftar teknologi.",
-    solution: "Menyusun struktur studi kasus yang menjawab problem, solution, technologies, result, dan challenge.",
-    result: "Setiap proyek nantinya punya format evaluasi yang konsisten dan mudah dibandingkan.",
-    technologies: ["Content strategy", "Case study", "Static components"],
-  },
-];
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects")).sort((current, next) => current.data.order - next.data.order);
 ---
 
 <section id="projects" class="py-24 md:py-section">
@@ -32,7 +19,7 @@ const projects = [
 
     <div class="grid gap-6">
       {
-        projects.map((project) => (
+        projects.map(({ data: project }) => (
           <article class="rounded-card border border-border bg-surface p-6 shadow-soft md:p-8">
             <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
               <div>
