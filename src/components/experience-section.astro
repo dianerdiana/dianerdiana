@@ -1,0 +1,54 @@
+---
+const entries = [
+  {
+    phase: "Problem framing",
+    title: "Start with context before implementation",
+    description:
+      "Memahami tujuan bisnis, pengguna, batasan teknis, dan definisi selesai sebelum memilih solusi.",
+  },
+  {
+    phase: "System design",
+    title: "Prefer clear structure over clever abstractions",
+    description:
+      "Membuat modul, data flow, dan interface yang bisa dibaca ulang tanpa bergantung pada ingatan pembuatnya.",
+  },
+  {
+    phase: "Delivery",
+    title: "Ship in increments with visible quality gates",
+    description:
+      "Mengutamakan build yang stabil, perubahan terukur, dan dokumentasi keputusan penting saat kompleksitas naik.",
+  },
+];
+---
+
+<section id="experience" class="border-y border-border bg-surface py-24 md:py-section">
+  <div class="container">
+    <div class="mb-12 max-w-[760px]">
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Experience</p>
+      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">
+        A workflow centered on impact.
+      </h2>
+      <p class="mt-5 text-text-secondary">
+        Section ini disiapkan sebagai timeline. Sampai data pengalaman profesional ditambahkan, kontennya menampilkan
+        pola kerja yang akan menjadi dasar penulisan impact, bukan job description.
+      </p>
+    </div>
+
+    <div class="grid gap-6">
+      {
+        entries.map((entry, index) => (
+          <article class="grid gap-5 border-l border-border pl-6 md:grid-cols-[180px_minmax(0,1fr)] md:gap-8">
+            <div>
+              <p class="text-sm font-semibold text-primary">0{index + 1}</p>
+              <p class="mt-1 text-sm text-text-secondary">{entry.phase}</p>
+            </div>
+            <div class="max-w-[760px]">
+              <h3 class="text-[22px] font-semibold leading-tight text-text-primary">{entry.title}</h3>
+              <p class="mt-3 text-text-secondary">{entry.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
