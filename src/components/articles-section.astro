@@ -1,9 +1,7 @@
 ---
-const articles = [
-  "How I evaluate technical tradeoffs",
-  "Keeping frontend architecture boring in a good way",
-  "Writing project case studies that show engineering judgment",
-];
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articles")).sort((current, next) => current.data.order - next.data.order);
 ---
 
 <section id="articles" class="border-y border-border bg-surface py-24 md:py-section">
@@ -18,10 +16,10 @@ const articles = [
 
     <div class="grid gap-4 md:grid-cols-3">
       {
-        articles.map((title) => (
+        articles.map(({ data: article }) => (
           <article class="rounded-card border border-border bg-surface p-6 shadow-soft">
-            <p class="text-sm text-text-secondary">Draft topic</p>
-            <h3 class="mt-3 text-[22px] font-semibold leading-tight text-text-primary">{title}</h3>
+            <p class="text-sm text-text-secondary">{article.status}</p>
+            <h3 class="mt-3 text-[22px] font-semibold leading-tight text-text-primary">{article.title}</h3>
           </article>
         ))
       }
