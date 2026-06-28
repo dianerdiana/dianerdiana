@@ -1,0 +1,41 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Dian Erdiana",
+  description = "Portfolio software engineer yang rapi, terstruktur, dan berfokus pada kualitas implementasi.",
+  image,
+} = Astro.props;
+
+const canonicalUrl = Astro.url.href;
+const pageTitle = title === "Dian Erdiana" ? title : `${title} | Dian Erdiana`;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {image && <meta property="og:image" content={new URL(image, Astro.url).href} />}
+  </head>
+  <body class="bg-background text-text-primary">
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
