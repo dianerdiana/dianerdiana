@@ -1,9 +1,7 @@
 ---
-const certificates = [
-  "Frontend fundamentals",
-  "Backend architecture",
-  "Database design",
-];
+import { getCollection } from "astro:content";
+
+const certificates = (await getCollection("certificates")).sort((current, next) => current.data.order - next.data.order);
 ---
 
 <section id="certificates" class="py-24 md:py-section">
@@ -19,11 +17,11 @@ const certificates = [
 
     <div class="grid gap-4 md:grid-cols-3">
       {
-        certificates.map((certificate) => (
+        certificates.map(({ data: certificate }) => (
           <article class="rounded-card border border-border bg-surface p-6 shadow-soft">
             <div class="mb-5 h-28 rounded-lg border border-border bg-background" aria-hidden="true" />
-            <h3 class="text-[22px] font-semibold leading-tight text-text-primary">{certificate}</h3>
-            <p class="mt-2 text-sm text-text-secondary">Certificate placeholder</p>
+            <h3 class="text-[22px] font-semibold leading-tight text-text-primary">{certificate.title}</h3>
+            <p class="mt-2 text-sm text-text-secondary">{certificate.issuer}</p>
           </article>
         ))
       }
