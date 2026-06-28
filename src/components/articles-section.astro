@@ -1,0 +1,30 @@
+---
+const articles = [
+  "How I evaluate technical tradeoffs",
+  "Keeping frontend architecture boring in a good way",
+  "Writing project case studies that show engineering judgment",
+];
+---
+
+<section id="articles" class="border-y border-border bg-surface py-24 md:py-section">
+  <div class="container">
+    <div class="mb-12 max-w-[760px]">
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Articles</p>
+      <h2 class="mt-4 text-3xl font-bold leading-tight text-text-primary md:text-[36px]">Notes on craft and clarity.</h2>
+      <p class="mt-5 text-text-secondary">
+        Artikel bersifat opsional, tetapi struktur ini sudah siap untuk tulisan yang memperlihatkan cara berpikir teknis.
+      </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-3">
+      {
+        articles.map((title) => (
+          <article class="rounded-card border border-border bg-surface p-6 shadow-soft">
+            <p class="text-sm text-text-secondary">Draft topic</p>
+            <h3 class="mt-3 text-[22px] font-semibold leading-tight text-text-primary">{title}</h3>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
