@@ -1,117 +1,25 @@
 ---
 import BaseLayout from "../layouts/base-layout.astro";
+import AboutSection from "../components/about-section.astro";
+import ArticlesSection from "../components/articles-section.astro";
+import CertificatesSection from "../components/certificates-section.astro";
+import ContactSection from "../components/contact-section.astro";
+import ExperienceSection from "../components/experience-section.astro";
+import FeaturedProjectsSection from "../components/featured-projects-section.astro";
+import HeroSection from "../components/hero-section.astro";
+import SkillsSection from "../components/skills-section.astro";
 ---
 
 <BaseLayout
   title="Dian Erdiana"
   description="Portfolio software engineer yang rapi, terstruktur, dan berfokus pada kualitas implementasi."
 >
-  <section class="pt-32 pb-24 md:pt-40 md:pb-32">
-    <div class="container grid gap-12 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
-      <div class="max-w-[760px]">
-        <p class="mb-5 text-sm font-semibold uppercase tracking-[0.12em] text-primary">Full-stack developer</p>
-        <h1 class="text-4xl font-bold leading-tight text-text-primary md:text-[56px] md:leading-[1.1]">
-          Building reliable software with calm, structured execution.
-        </h1>
-        <p class="mt-6 max-w-[640px] text-[17px] leading-[1.7] text-text-secondary">
-          Saya membangun aplikasi web yang rapi, mudah dipelihara, dan berfokus pada kualitas keputusan teknis.
-          Portfolio ini menyoroti proses berpikir, hasil terukur, dan cara saya menyelesaikan masalah engineering.
-        </p>
-
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a
-            class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-5 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:bg-hover hover:text-white"
-            href="#projects"
-          >
-            View Projects
-          </a>
-          <a
-            class="inline-flex h-12 items-center justify-center rounded-md border border-border bg-surface px-5 text-sm font-semibold text-text-primary no-underline transition duration-200 ease-out hover:border-primary hover:text-primary"
-            href="#contact"
-          >
-            Contact
-          </a>
-        </div>
-      </div>
-
-      <div class="rounded-card border border-border bg-surface p-6 shadow-soft">
-        <div class="flex items-center justify-between border-b border-border pb-4">
-          <div>
-            <p class="text-sm font-semibold text-text-primary">Engineering Snapshot</p>
-            <p class="text-sm text-text-secondary">Portfolio foundation</p>
-          </div>
-          <span class="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">Available</span>
-        </div>
-
-        <div class="grid gap-4 py-6">
-          <div class="rounded-lg border border-border bg-background p-4">
-            <p class="text-sm font-semibold text-text-primary">Focus</p>
-            <p class="mt-1 text-sm text-text-secondary">Maintainable products, practical architecture, clean delivery.</p>
-          </div>
-          <div class="rounded-lg border border-border bg-background p-4">
-            <p class="text-sm font-semibold text-text-primary">Current Stack</p>
-            <p class="mt-1 text-sm text-text-secondary">Astro, React, TailwindCSS, TypeScript, database-backed apps.</p>
-          </div>
-          <div class="rounded-lg border border-border bg-background p-4">
-            <p class="text-sm font-semibold text-text-primary">Working Principle</p>
-            <p class="mt-1 text-sm text-text-secondary">Craftsmanship over hype. Clarity over complexity.</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-3 gap-3 border-t border-border pt-4">
-          <div>
-            <p class="text-xl font-bold text-text-primary">01</p>
-            <p class="text-xs text-text-secondary">Foundation</p>
-          </div>
-          <div>
-            <p class="text-xl font-bold text-text-primary">00</p>
-            <p class="text-xs text-text-secondary">Client JS</p>
-          </div>
-          <div>
-            <p class="text-xl font-bold text-text-primary">SSG</p>
-            <p class="text-xs text-text-secondary">Output</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="border-y border-border bg-surface py-20">
-    <div class="container">
-      <div class="content-width">
-        <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">About</p>
-        <h2 class="mt-4 text-3xl font-bold text-text-primary md:text-[36px]">Focused on dependable engineering.</h2>
-        <p class="mt-5 text-text-secondary">
-          Halaman ini masih berada di tahap awal implementasi. Struktur utama sudah siap agar section berikutnya dapat
-          ditambahkan sebagai komponen Astro statis.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills" class="py-20">
-    <div class="container">
-      <div class="grid gap-4 md:grid-cols-3">
-        {["Frontend", "Backend", "Database"].map((item) => (
-          <div class="rounded-card border border-border bg-surface p-6 shadow-soft">
-            <p class="text-sm font-semibold text-text-primary">{item}</p>
-            <p class="mt-2 text-sm text-text-secondary">Akan dirinci pada tahap komponen konten statis.</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="border-t border-border bg-surface py-20">
-    <div class="container">
-      <div class="content-width">
-        <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Projects</p>
-        <h2 class="mt-4 text-3xl font-bold text-text-primary md:text-[36px]">Project details will carry the portfolio.</h2>
-        <p class="mt-5 text-text-secondary">
-          Tahap berikutnya akan memecah konten menjadi section dan card proyek yang menjelaskan problem, solution,
-          technologies, result, dan tradeoff teknis.
-        </p>
-      </div>
-    </div>
-  </section>
+  <HeroSection />
+  <AboutSection />
+  <SkillsSection />
+  <ExperienceSection />
+  <FeaturedProjectsSection />
+  <ArticlesSection />
+  <CertificatesSection />
+  <ContactSection />
 </BaseLayout>
