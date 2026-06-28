@@ -1,0 +1,8 @@
+{
+  "title": "Project Detail Framework",
+  "problem": "Recruiter butuh melihat cara berpikir teknis, bukan hanya daftar teknologi.",
+  "solution": "Menyusun struktur studi kasus yang menjawab problem, solution, technologies, result, dan challenge.",
+  "result": "Setiap proyek nantinya punya format evaluasi yang konsisten dan mudah dibandingkan.",
+  "technologies": ["Content strategy", "Case study", "Static components"],
+  "order": 2
+}

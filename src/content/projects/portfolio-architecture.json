@@ -1,0 +1,8 @@
+{
+  "title": "Portfolio Architecture",
+  "problem": "Portfolio perlu terasa profesional tanpa bergantung pada efek visual berlebihan.",
+  "solution": "Menggunakan Astro untuk konten statis, Tailwind token untuk konsistensi, dan React hanya untuk island.",
+  "result": "Halaman awal tetap ringan, jelas, dan siap diperluas menjadi project detail yang lebih kuat.",
+  "technologies": ["Astro", "TailwindCSS", "TypeScript"],
+  "order": 1
+}
