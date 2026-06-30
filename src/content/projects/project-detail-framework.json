@@ -1,8 +1,12 @@
 {
   "title": "Project Detail Framework",
+  "summary": "Kerangka studi kasus yang membantu recruiter membaca problem, keputusan teknis, dan hasil dengan cepat.",
   "problem": "Recruiter butuh melihat cara berpikir teknis, bukan hanya daftar teknologi.",
   "solution": "Menyusun struktur studi kasus yang menjawab problem, solution, technologies, result, dan challenge.",
   "result": "Setiap proyek nantinya punya format evaluasi yang konsisten dan mudah dibandingkan.",
   "technologies": ["Content strategy", "Case study", "Static components"],
+  "categories": ["content-strategy", "architecture"],
+  "role": "Content systems",
+  "year": "2026",
   "order": 2
 }
