@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/base-layout.astro";
+import ProjectCard from "../components/project-card.astro";
+import Tabs from "../components/tabs.astro";
+
+const categories = (await getCollection("projectCategories")).sort(
+  (current, next) => current.data.order - next.data.order,
+);
+const projects = (await getCollection("projects")).sort((current, next) => current.data.order - next.data.order);
+
+const categoryBySlug = new Map(categories.map((category) => [category.id, category.data.name]));
+const tabs = categories.map((category) => ({
+  label: category.data.name,
+  value: category.id,
+  count: projects.filter((project) => project.data.categories.includes(category.id)).length,
+}));
+---
+
+<BaseLayout
+  title="Projects"
+  description="Kumpulan project Dian Erdiana berdasarkan kategori, problem, solution, hasil, dan teknologi."
+>
+  <section class="pt-32 pb-24 md:pt-40 md:pb-section">
+    <div class="container">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,760px)_minmax(280px,1fr)] lg:items-end">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Projects</p>
+          <h1 class="mt-4 text-4xl font-bold leading-tight text-text-primary md:text-[56px] md:leading-[1.1]">
+            A categorized view of selected engineering work.
+          </h1>
+          <p class="mt-6 text-[17px] leading-[1.7] text-text-secondary">
+            Setiap card dirancang untuk memperlihatkan konteks masalah, keputusan implementasi, hasil, dan teknologi
+            yang dipakai supaya project mudah dibandingkan.
+          </p>
+        </div>
+
+        <div class="rounded-card border border-border bg-surface p-6 shadow-soft">
+          <p class="text-sm font-semibold text-text-primary">Project index</p>
+          <dl class="mt-5 grid grid-cols-2 gap-4">
+            <div>
+              <dt class="text-sm text-text-secondary">Projects</dt>
+              <dd class="mt-1 text-3xl font-bold text-text-primary">{projects.length}</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-text-secondary">Categories</dt>
+              <dd class="mt-1 text-3xl font-bold text-text-primary">{categories.length}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="mt-14">
+        <Tabs
+          items={tabs}
+          allCount={projects.length}
+          group="projects"
+          panelId="projects-list"
+          ariaLabel="Project categories"
+        >
+          <div class="grid gap-5 lg:grid-cols-2">
+            {
+              projects.map((project) => (
+                <ProjectCard
+                  project={project.data}
+                  categoryLabels={project.data.categories.map((category) => categoryBySlug.get(category) ?? category)}
+                  filterGroup="projects"
+                />
+              ))
+            }
+          </div>
+        </Tabs>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
