@@ -1,8 +1,12 @@
 {
   "title": "Portfolio Architecture",
+  "summary": "Fondasi portfolio berbasis Astro yang ringan, konsisten, dan siap diperluas menjadi studi kasus lengkap.",
   "problem": "Portfolio perlu terasa profesional tanpa bergantung pada efek visual berlebihan.",
   "solution": "Menggunakan Astro untuk konten statis, Tailwind token untuk konsistensi, dan React hanya untuk island.",
   "result": "Halaman awal tetap ringan, jelas, dan siap diperluas menjadi project detail yang lebih kuat.",
   "technologies": ["Astro", "TailwindCSS", "TypeScript"],
+  "categories": ["frontend", "architecture"],
+  "role": "Frontend architecture",
+  "year": "2026",
   "order": 1
 }
