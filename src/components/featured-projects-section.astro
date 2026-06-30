@@ -1,7 +1,10 @@
 ---
 import { getCollection } from "astro:content";
+import ProjectCard from "./project-card.astro";
 
 const projects = (await getCollection("projects")).sort((current, next) => current.data.order - next.data.order);
+const categories = await getCollection("projectCategories");
+const categoryBySlug = new Map(categories.map((category) => [category.id, category.data.name]));
 ---
 
 <section id="projects" class="py-24 md:py-section">
@@ -15,46 +18,16 @@ const projects = (await getCollection("projects")).sort((current, next) => curre
         Card proyek dibuat besar dan terstruktur agar nanti mudah diganti dengan studi kasus nyata tanpa mengubah sistem
         layout.
       </p>
+      <a class="mt-5 inline-flex text-sm font-semibold no-underline" href="/projects">View all projects</a>
     </div>
 
-    <div class="grid gap-6">
+    <div class="grid gap-5 lg:grid-cols-2">
       {
         projects.map(({ data: project }) => (
-          <article class="rounded-card border border-border bg-surface p-6 shadow-soft md:p-8">
-            <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
-              <div>
-                <div class="mb-6 flex h-40 items-end rounded-lg border border-border bg-background p-5">
-                  <p class="text-sm font-medium text-text-secondary">Project cover placeholder</p>
-                </div>
-                <h3 class="text-[22px] font-semibold leading-tight text-text-primary">{project.title}</h3>
-                <div class="mt-5 grid gap-4 md:grid-cols-3">
-                  <div>
-                    <p class="text-sm font-semibold text-text-primary">Problem</p>
-                    <p class="mt-2 text-sm text-text-secondary">{project.problem}</p>
-                  </div>
-                  <div>
-                    <p class="text-sm font-semibold text-text-primary">Solution</p>
-                    <p class="mt-2 text-sm text-text-secondary">{project.solution}</p>
-                  </div>
-                  <div>
-                    <p class="text-sm font-semibold text-text-primary">Result</p>
-                    <p class="mt-2 text-sm text-text-secondary">{project.result}</p>
-                  </div>
-                </div>
-              </div>
-
-              <aside class="rounded-lg border border-border bg-background p-5">
-                <p class="text-sm font-semibold text-text-primary">Technologies</p>
-                <div class="mt-4 flex flex-wrap gap-2">
-                  {project.technologies.map((technology) => (
-                    <span class="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-text-secondary">
-                      {technology}
-                    </span>
-                  ))}
-                </div>
-              </aside>
-            </div>
-          </article>
+          <ProjectCard
+            project={project}
+            categoryLabels={project.categories.map((category) => categoryBySlug.get(category) ?? category)}
+          />
         ))
       }
     </div>
