@@ -1,0 +1,153 @@
+---
+interface TabItem {
+  label: string;
+  value: string;
+  count?: number;
+}
+
+interface Props {
+  items: TabItem[];
+  group?: string;
+  allLabel?: string;
+  allCount?: number;
+  defaultValue?: string;
+  panelId?: string;
+  ariaLabel?: string;
+}
+
+const {
+  items,
+  group = "tabs",
+  allLabel = "All",
+  allCount,
+  defaultValue = "all",
+  panelId = `${group}-content`,
+  ariaLabel = "Tabs",
+} = Astro.props;
+
+const tabs = [{ label: allLabel, value: "all", count: allCount }, ...items];
+---
+
+<div data-tabs data-tabs-group={group} data-default-tab={defaultValue}>
+  <div class="overflow-x-auto pb-1">
+    <div class="inline-flex min-w-full gap-2" role="tablist" aria-label={ariaLabel}>
+      {
+        tabs.map((item) => (
+          <button
+            id={`${group}-tab-${item.value}`}
+            class="tab-trigger inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-md border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-secondary transition duration-200 ease-out hover:border-primary hover:text-primary"
+            type="button"
+            role="tab"
+            aria-selected={item.value === defaultValue ? "true" : "false"}
+            aria-controls={panelId}
+            data-tab-trigger
+            data-tab-value={item.value}
+          >
+            <span>{item.label}</span>
+            {
+              typeof item.count === "number" && (
+                <span class="tab-count rounded-full border border-current/15 bg-background px-2 py-0.5 text-xs">
+                  {item.count}
+                </span>
+              )
+            }
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <div
+    id={panelId}
+    class="mt-8"
+    role="tabpanel"
+    tabindex="0"
+    aria-labelledby={`${group}-tab-${defaultValue}`}
+    data-tab-content
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  .tab-trigger[aria-selected="true"] {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .tab-trigger[aria-selected="true"] .tab-count {
+    background: color-mix(in srgb, #ffffff 18%, transparent);
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  const setupTabs = () => {
+    document.querySelectorAll("[data-tabs]").forEach((root) => {
+      if (!(root instanceof HTMLElement) || root.dataset.tabsReady === "true") {
+        return;
+      }
+
+      root.dataset.tabsReady = "true";
+
+      const triggers = Array.from(root.querySelectorAll("[data-tab-trigger]")).filter(
+        (trigger) => trigger instanceof HTMLButtonElement,
+      );
+      const targets = Array.from(root.querySelectorAll("[data-tab-target]")).filter(
+        (target) => target instanceof HTMLElement,
+      );
+      const content = root.querySelector("[data-tab-content]");
+
+      const selectTab = (value) => {
+        triggers.forEach((trigger) => {
+          const isActive = trigger.dataset.tabValue === value;
+          trigger.setAttribute("aria-selected", String(isActive));
+          trigger.setAttribute("tabindex", isActive ? "0" : "-1");
+
+          if (isActive && content instanceof HTMLElement) {
+            content.setAttribute("aria-labelledby", trigger.id);
+          }
+        });
+
+        targets.forEach((target) => {
+          const categories = (target.dataset.categories ?? "").split(" ").filter(Boolean);
+          target.hidden = value !== "all" && !categories.includes(value);
+        });
+      };
+
+      triggers.forEach((trigger, index) => {
+        trigger.addEventListener("click", () => {
+          selectTab(trigger.dataset.tabValue ?? "all");
+        });
+
+        trigger.addEventListener("keydown", (event) => {
+          const nextKeys = ["ArrowRight", "ArrowDown"];
+          const previousKeys = ["ArrowLeft", "ArrowUp"];
+          let nextIndex = index;
+
+          if (nextKeys.includes(event.key)) {
+            nextIndex = (index + 1) % triggers.length;
+          } else if (previousKeys.includes(event.key)) {
+            nextIndex = (index - 1 + triggers.length) % triggers.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = triggers.length - 1;
+          } else {
+            return;
+          }
+
+          event.preventDefault();
+          triggers[nextIndex].focus();
+          triggers[nextIndex].click();
+        });
+      });
+
+      selectTab(root.dataset.defaultTab ?? "all");
+    });
+  };
+
+  setupTabs();
+  document.addEventListener("astro:page-load", setupTabs);
+</script>
