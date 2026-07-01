@@ -28,11 +28,16 @@ const projectCategories = defineCollection({
 });
 
 const articles = defineCollection({
-  loader: glob({ base: './src/content/articles', pattern: '**/*.json' }),
+  loader: glob({ base: './src/content/articles', pattern: '**/*.md' }),
   schema: z.object({
     title: z.string(),
-    status: z.string(),
-    order: z.number(),
+    description: z.string(),
+    publishedAt: z.coerce.date(),
+    readTimeMinutes: z.number().int().positive(),
+    views: z.number().int().nonnegative(),
+    topics: z.array(z.string()).min(1),
+    image: z.string(),
+    imageAlt: z.string(),
   }),
 });
 
