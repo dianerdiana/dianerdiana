@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Technical tradeoffs cover</title>
+  <desc id="desc">A decision matrix for comparing engineering tradeoffs.</desc>
+  <rect width="1200" height="800" fill="#f8fafc"/>
+  <rect x="130" y="120" width="940" height="560" rx="32" fill="#ffffff" stroke="#e5e7eb" stroke-width="3"/>
+  <path d="M250 240h700M250 360h700M250 480h700M420 200v340M650 200v340M820 200v340" stroke="#e5e7eb" stroke-width="4"/>
+  <rect x="250" y="240" width="170" height="120" fill="#eff6ff"/>
+  <rect x="650" y="360" width="170" height="120" fill="#ecfdf5"/>
+  <rect x="820" y="240" width="130" height="120" fill="#fffbeb"/>
+  <circle cx="335" cy="300" r="26" fill="#1e3a8a" opacity=".25"/>
+  <circle cx="735" cy="420" r="26" fill="#10b981" opacity=".25"/>
+  <circle cx="885" cy="300" r="26" fill="#f59e0b" opacity=".28"/>
+  <rect x="280" y="570" width="220" height="16" rx="8" fill="#111827" opacity=".18"/>
+  <rect x="540" y="570" width="160" height="16" rx="8" fill="#111827" opacity=".12"/>
+  <path d="M285 620h330" stroke="#1e3a8a" stroke-width="8" stroke-linecap="round"/>
+  <path d="M645 620h180" stroke="#10b981" stroke-width="8" stroke-linecap="round"/>
+</svg>
