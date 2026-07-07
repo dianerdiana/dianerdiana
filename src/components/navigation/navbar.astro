@@ -1,0 +1,112 @@
+---
+import DesktopNavigation from "./desktop-navigation.astro";
+import MobileNavigation from "./mobile-navigation.astro";
+import { navigationConfig } from "../../configs/navigation-config";
+import { themeConfig } from "../../configs/theme-config";
+import { getNavigationBySurface } from "../../lib/navigation";
+
+const primaryItems = getNavigationBySurface("primary");
+const mobileItems = getNavigationBySurface("mobile");
+---
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-background/88 backdrop-blur-md">
+  <nav class="container flex h-20 items-center justify-between" aria-label="Primary navigation">
+    <a class="flex items-center text-[15px] font-semibold text-text-primary no-underline" href={themeConfig.links.home} aria-label={`${themeConfig.site.name} home`}>
+      <img src={themeConfig.assets.logo} alt={`${themeConfig.site.name} logo`} class="mr-2 inline-block h-6 w-6 dark:hidden" />
+      <img src={themeConfig.assets.logoDark} alt={`${themeConfig.site.name} logo`} class="mr-2 hidden h-6 w-6 dark:inline-block" />
+      <span>{themeConfig.site.name}</span>
+    </a>
+
+    <div class="hidden items-center gap-1 md:flex">
+      <DesktopNavigation items={primaryItems} />
+      <button
+        class="theme-toggle ml-2 flex h-10 items-center gap-2 rounded-md border border-border bg-surface px-3 text-sm font-semibold text-text-secondary transition duration-200 ease-out hover:border-primary hover:text-primary"
+        type="button"
+        data-theme-toggle
+        aria-label="Activate dark mode"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle__track" aria-hidden="true">
+          <span class="theme-toggle__thumb"></span>
+        </span>
+        <span data-theme-toggle-label>Light</span>
+      </button>
+      <a
+        class="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:bg-hover hover:text-white"
+        href={navigationConfig.cta.href}
+      >
+        {navigationConfig.cta.label}
+      </a>
+    </div>
+
+    <input class="peer sr-only" type="checkbox" id="nav-toggle" aria-label="Toggle navigation" />
+
+    <label
+      class="flex h-10 cursor-pointer items-center rounded-md border border-border bg-surface px-3 text-sm font-medium text-text-primary md:hidden"
+      for="nav-toggle"
+    >
+      Menu
+    </label>
+
+    <div
+      class="pointer-events-none absolute left-4 right-4 top-18 grid -translate-y-2 gap-3 rounded-lg border border-border bg-surface p-3 opacity-0 shadow-soft transition duration-200 ease-out peer-checked:pointer-events-auto peer-checked:translate-y-0 peer-checked:opacity-100 md:hidden"
+    >
+      <MobileNavigation items={mobileItems} cta={navigationConfig.cta} />
+      <button
+        class="theme-toggle flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-surface px-3 text-sm font-semibold text-text-secondary transition duration-200 ease-out hover:border-primary hover:text-primary"
+        type="button"
+        data-theme-toggle
+        aria-label="Activate dark mode"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle__track" aria-hidden="true">
+          <span class="theme-toggle__thumb"></span>
+        </span>
+        <span data-theme-toggle-label>Light</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const setupThemeToggle = () => {
+    const root = document.documentElement;
+    const toggles = Array.from(document.querySelectorAll("[data-theme-toggle]")).filter(
+      (toggle) => toggle instanceof HTMLButtonElement,
+    );
+
+    const syncToggles = () => {
+      const isDark = root.classList.contains("dark");
+      toggles.forEach((toggle) => {
+        const label = toggle.querySelector("[data-theme-toggle-label]");
+        toggle.setAttribute("aria-pressed", String(isDark));
+        toggle.setAttribute("aria-label", isDark ? "Activate light mode" : "Activate dark mode");
+        if (label) {
+          label.textContent = isDark ? "Dark" : "Light";
+        }
+      });
+    };
+
+    toggles.forEach((toggle) => {
+      if (toggle.dataset.themeToggleReady === "true") {
+        return;
+      }
+
+      toggle.dataset.themeToggleReady = "true";
+      toggle.addEventListener("click", () => {
+        const isDark = root.classList.toggle("dark");
+        try {
+          localStorage.setItem("theme", isDark ? "dark" : "light");
+        } catch {
+          // Theme still changes for the current page when storage is unavailable.
+        }
+        syncToggles();
+      });
+    });
+
+    syncToggles();
+  };
+
+  setupThemeToggle();
+  document.addEventListener("astro:page-load", setupThemeToggle);
+</script>
