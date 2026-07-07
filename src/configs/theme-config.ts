@@ -11,7 +11,7 @@ export const themeConfig = {
     email,
   },
   assets: {
-    favicon: '/favicon.ico',
+    favicon: '/logo/logo.svg',
     faviconVersion: '2026-07-06',
     logo: '/logo/logo.svg',
     logoDark: '/logo/logo-dark.svg',
