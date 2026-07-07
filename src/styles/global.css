@@ -125,39 +125,3 @@
     max-width: 760px;
   }
 }
-
-@layer components {
-  .theme-toggle__track {
-    display: inline-flex;
-    width: 34px;
-    height: 20px;
-    align-items: center;
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    background: var(--color-background);
-    padding: 2px;
-    transition:
-      background-color 200ms ease-out,
-      border-color 200ms ease-out;
-  }
-
-  .theme-toggle__thumb {
-    width: 14px;
-    height: 14px;
-    border-radius: 999px;
-    background: var(--color-text-secondary);
-    transition:
-      background-color 200ms ease-out,
-      transform 200ms ease-out;
-  }
-
-  .dark .theme-toggle__track {
-    border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
-    background: color-mix(in srgb, var(--color-accent) 16%, var(--color-background));
-  }
-
-  .dark .theme-toggle__thumb {
-    background: var(--color-accent);
-    transform: translateX(14px);
-  }
-}
