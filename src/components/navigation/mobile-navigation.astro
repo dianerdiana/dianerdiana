@@ -1,0 +1,48 @@
+---
+import NavigationLink from "./navigation-link.astro";
+import type { NavigationCta, NavigationLink as NavigationLinkType, NavigationMenu } from "../../types/navigation";
+
+interface Props {
+  items: Array<NavigationLinkType | NavigationMenu>;
+  cta: NavigationCta;
+}
+
+const { items, cta } = Astro.props;
+---
+
+<div class="grid gap-2">
+  {
+    items.map((item) =>
+      item.kind === "link" ? (
+        <NavigationLink item={item} variant="mobile" showDescription />
+      ) : (
+        <details class="rounded-md border border-border bg-background p-3">
+          <summary class="cursor-pointer list-none text-sm font-semibold text-text-primary">
+            <span>{item.label}</span>
+            {item.description && <span class="mt-1 block text-sm font-normal leading-6 text-text-secondary">{item.description}</span>}
+          </summary>
+          <div class="mt-3 grid gap-2">
+            {item.children.map((child) => (
+              <NavigationLink item={child} variant="mobile" showDescription />
+            ))}
+            {item.href && (
+              <a
+                class="rounded-md border border-border bg-surface px-3 py-2 text-sm font-semibold text-text-primary no-underline transition duration-200 ease-out hover:border-primary hover:text-primary"
+                href={item.href}
+              >
+                View all {item.label}
+              </a>
+            )}
+          </div>
+        </details>
+      ),
+    )
+  }
+
+  <a
+    class="mt-2 inline-flex min-h-12 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:bg-hover hover:text-white"
+    href={cta.href}
+  >
+    {cta.label}
+  </a>
+</div>
