@@ -7,7 +7,8 @@ export const themeConfig = {
     description:
       'A structured software engineering portfolio focused on clear execution and implementation quality.',
     language: 'en',
-    tagline: 'Engineering over aesthetics. Clarity over complexity.',
+    tagline:
+      'Engineering over aesthetics. Craftsmanship over hype. Clarity over complexity.',
     email,
   },
   assets: {
