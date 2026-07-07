@@ -33,22 +33,21 @@ const sortOptions = themeConfig.pages.blog.sortOptions;
         <aside class="space-y-6 lg:sticky lg:top-28" aria-label={themeConfig.pages.blog.filtersLabel}>
           <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
             <h2 class="text-sm font-semibold uppercase tracking-[0.12em] text-text-primary">{themeConfig.pages.blog.sortTitle}</h2>
-            <div class="mt-5 grid gap-2" role="group" aria-label="Sort articles">
+            <label class="sr-only" for="blog-sort-select">Sort articles</label>
+            <select
+              id="blog-sort-select"
+              class="mt-5 min-h-10 w-full rounded-md border border-border bg-background px-3 py-2 text-sm font-semibold text-text-secondary transition duration-200 ease-out hover:border-primary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              data-sort-select
+              aria-label="Sort articles"
+            >
               {
                 sortOptions.map((option) => (
-                  <button
-                    class="rounded-md border border-border bg-background px-3 py-2 text-left text-sm font-semibold text-text-secondary transition duration-200 ease-out hover:border-primary hover:text-primary"
-                    type="button"
-                    data-sort-trigger
-                    data-sort-value={option.value}
-                    data-selected={option.value === "newest" ? "true" : "false"}
-                    aria-pressed={option.value === "newest" ? "true" : "false"}
-                  >
+                  <option value={option.value} selected={option.value === "newest"}>
                     {option.label}
-                  </button>
+                  </option>
                 ))
               }
-            </div>
+            </select>
           </section>
 
           <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
@@ -115,7 +114,6 @@ const sortOptions = themeConfig.pages.blog.sortOptions;
 </BaseLayout>
 
 <style>
-  [data-sort-trigger][data-selected="true"],
   [data-topic-trigger][data-selected="true"],
   [data-clear-topics][data-selected="true"] {
     border-color: var(--color-primary);
@@ -143,9 +141,7 @@ const sortOptions = themeConfig.pages.blog.sortOptions;
       const articles = Array.from(root.querySelectorAll("[data-article-card]")).filter(
         (article) => article instanceof HTMLElement,
       );
-      const sortTriggers = Array.from(root.querySelectorAll("[data-sort-trigger]")).filter(
-        (trigger) => trigger instanceof HTMLButtonElement,
-      );
+      const sortSelect = root.querySelector("[data-sort-select]");
       const topicTriggers = Array.from(root.querySelectorAll("[data-topic-trigger]")).filter(
         (trigger) => trigger instanceof HTMLButtonElement,
       );
@@ -154,7 +150,10 @@ const sortOptions = themeConfig.pages.blog.sortOptions;
       const pageSummary = root.querySelector("[data-page-summary]");
       const pagination = root.querySelector("[data-pagination]");
       const emptyState = root.querySelector("[data-empty-state]");
-      const allowedSorts = new Set(sortTriggers.map((trigger) => trigger.dataset.sortValue));
+      const allowedSorts =
+        sortSelect instanceof HTMLSelectElement
+          ? new Set(Array.from(sortSelect.options).map((option) => option.value))
+          : new Set();
       const allowedTopics = new Set(topicTriggers.map((trigger) => trigger.dataset.topicValue));
       const state = {
         sort: "newest",
@@ -257,11 +256,9 @@ const sortOptions = themeConfig.pages.blog.sortOptions;
       };
 
       const updateControls = () => {
-        sortTriggers.forEach((trigger) => {
-          const isSelected = trigger.dataset.sortValue === state.sort;
-          trigger.dataset.selected = String(isSelected);
-          trigger.setAttribute("aria-pressed", String(isSelected));
-        });
+        if (sortSelect instanceof HTMLSelectElement) {
+          sortSelect.value = state.sort;
+        }
 
         topicTriggers.forEach((trigger) => {
           const value = trigger.dataset.topicValue ?? "";
@@ -331,13 +328,13 @@ const sortOptions = themeConfig.pages.blog.sortOptions;
         updateUrl();
       };
 
-      sortTriggers.forEach((trigger) => {
-        trigger.addEventListener("click", () => {
-          state.sort = trigger.dataset.sortValue ?? "newest";
+      if (sortSelect instanceof HTMLSelectElement) {
+        sortSelect.addEventListener("change", () => {
+          state.sort = sortSelect.value;
           state.page = 1;
           applyState();
         });
-      });
+      }
 
       topicTriggers.forEach((trigger) => {
         trigger.addEventListener("click", () => {
