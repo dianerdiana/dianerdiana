@@ -1,27 +1,37 @@
 ---
+import NavigationLink from "./navigation/navigation-link.astro";
 import { themeConfig } from "../configs/theme-config";
+import { getFooterNavigation } from "../lib/navigation";
 
-const links = themeConfig.socialLinks;
+const internalLinks = getFooterNavigation();
+const profileLinks = themeConfig.socialLinks;
 const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-border bg-surface">
-  <div class="container flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
+  <div class="container grid gap-8 py-10 md:grid-cols-[minmax(0,1fr)_auto_auto] md:items-start">
     <div>
       <p class="text-sm font-semibold text-text-primary">{themeConfig.site.name}</p>
       <p class="mt-1 text-sm text-text-secondary">{themeConfig.site.tagline}</p>
+      <p class="mt-4 text-sm text-text-secondary">&copy; {year}</p>
     </div>
 
-    <div class="flex flex-wrap gap-x-5 gap-y-2">
+    <nav class="flex max-w-[520px] flex-wrap gap-x-5 gap-y-2" aria-label="Footer navigation">
       {
-        links.map((link) => (
+        internalLinks.map((link) => (
+          <NavigationLink item={link} variant="footer" />
+        ))
+      }
+    </nav>
+
+    <div class="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
+      {
+        profileLinks.map((link) => (
           <a class="text-sm font-medium text-text-secondary no-underline hover:text-primary" href={link.href}>
             {link.label}
           </a>
         ))
       }
     </div>
-
-    <p class="text-sm text-text-secondary">© {year}</p>
   </div>
 </footer>
