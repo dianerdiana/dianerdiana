@@ -1,0 +1,27 @@
+---
+import SectionPage from "../../components/section-page.astro";
+---
+
+<SectionPage
+  title="Quotes"
+  description="Words worth remembering across engineering, learning, and disciplined work."
+  eyebrow="Thoughts"
+  heading="Words worth remembering."
+  intro="Quotes are collected here only when they sharpen judgment or capture an idea worth returning to during real work."
+  backHref="/thoughts"
+  backLabel="Back to Thoughts"
+  items={[
+    {
+      title: "Decision reminders",
+      description: "Short references that help keep tradeoffs practical and grounded.",
+    },
+    {
+      title: "Craft references",
+      description: "Notes that reinforce quality, clarity, and responsibility in the work.",
+    },
+    {
+      title: "Learning references",
+      description: "Phrases that make continuous improvement easier to remember and practice.",
+    },
+  ]}
+/>
