@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/base-layout.astro";
+import NavigationLink from "../components/navigation/navigation-link.astro";
+import { getNavigationMenu } from "../lib/navigation";
+
+const thoughtsMenu = getNavigationMenu("thoughts");
+
+if (!thoughtsMenu) {
+  throw new Error("Thoughts navigation menu is missing.");
+}
+---
+
+<BaseLayout
+  title="Thoughts"
+  description="A curated space for principles, quotes, and reflections about engineering and craft."
+>
+  <section class="pt-32 pb-24 md:pt-40 md:pb-section">
+    <div class="container">
+      <div class="max-w-content">
+        <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Thoughts</p>
+        <h1 class="mt-4 text-4xl font-bold leading-tight text-text-primary md:text-[56px] md:leading-[1.1]">
+          Principles, references, and notes from practice.
+        </h1>
+        <p class="mt-6 text-[17px] leading-[1.7] text-text-secondary">
+          This section keeps the quieter parts of the work visible: decision principles, memorable references, and reflections that sharpen how I build.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-4 md:grid-cols-3">
+        {
+          thoughtsMenu.children.map((item) => (
+            <NavigationLink item={item} variant="mobile" showDescription />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
