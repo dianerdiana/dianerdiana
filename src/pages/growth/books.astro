@@ -1,0 +1,27 @@
+---
+import SectionPage from "../../components/section-page.astro";
+---
+
+<SectionPage
+  title="Books"
+  description="Books and reading notes that shape how Dian Erdiana thinks and works."
+  eyebrow="Growth"
+  heading="Books that shaped how I think and work."
+  intro="This page is prepared for a curated reading list: books that influence engineering judgment, communication, focus, and long-term craft."
+  backHref="/growth"
+  backLabel="Back to Growth"
+  items={[
+    {
+      title: "Engineering judgment",
+      description: "Books that improve how I reason about systems, tradeoffs, architecture, and maintainability.",
+    },
+    {
+      title: "Execution and focus",
+      description: "Books that strengthen consistency, prioritization, and the ability to finish meaningful work.",
+    },
+    {
+      title: "Communication",
+      description: "Books that help convert technical thinking into clearer writing, documentation, and collaboration.",
+    },
+  ]}
+/>
