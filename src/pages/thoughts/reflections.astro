@@ -1,0 +1,27 @@
+---
+import SectionPage from "../../components/section-page.astro";
+---
+
+<SectionPage
+  title="Reflections"
+  description="Lessons learned through engineering practice and personal growth."
+  eyebrow="Thoughts"
+  heading="Lessons learned through experience."
+  intro="Reflections are intended to be short, honest notes about what changed in my thinking after building, learning, or making a decision."
+  backHref="/thoughts"
+  backLabel="Back to Thoughts"
+  items={[
+    {
+      title: "Technical lessons",
+      description: "What a project, bug, or architectural choice taught me about building maintainable software.",
+    },
+    {
+      title: "Process lessons",
+      description: "What improved the way I plan, communicate, test, and finish work.",
+    },
+    {
+      title: "Personal lessons",
+      description: "What shaped my habits, patience, and confidence as the work became more complex.",
+    },
+  ]}
+/>
