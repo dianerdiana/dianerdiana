@@ -1,0 +1,141 @@
+---
+import MegaMenu from "./mega-menu.astro";
+import NavigationLink from "./navigation-link.astro";
+import type { NavigationLink as NavigationLinkType, NavigationMenu } from "../../types/navigation";
+
+interface Props {
+  items: Array<NavigationLinkType | NavigationMenu>;
+}
+
+const { items } = Astro.props;
+---
+
+<div class="relative hidden items-center gap-1 md:flex" data-desktop-navigation>
+  {
+    items.map((item) =>
+      item.kind === "link" ? (
+        <NavigationLink item={item} variant="desktop" />
+      ) : (
+        <div class="relative" data-nav-menu={item.id}>
+          <button
+            class="rounded-md px-3 py-2 text-sm font-medium text-text-secondary transition duration-200 ease-out hover:bg-surface hover:text-text-primary data-[open=true]:bg-surface data-[open=true]:text-text-primary"
+            type="button"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls={`${item.id}-mega-menu`}
+            data-menu-trigger={item.id}
+          >
+            {item.label}
+          </button>
+          <MegaMenu menu={item} />
+        </div>
+      ),
+    )
+  }
+</div>
+
+<script>
+  const setupDesktopNavigation = () => {
+    document.querySelectorAll("[data-desktop-navigation]").forEach((root) => {
+      if (!(root instanceof HTMLElement) || root.dataset.desktopNavigationReady === "true") {
+        return;
+      }
+
+      root.dataset.desktopNavigationReady = "true";
+      const menuWrappers = Array.from(root.querySelectorAll("[data-nav-menu]")).filter(
+        (menu) => menu instanceof HTMLElement,
+      );
+
+      const setMenuState = (menu, isOpen) => {
+        const trigger = menu.querySelector("[data-menu-trigger]");
+        const panel = menu.querySelector("[data-mega-menu]");
+
+        menu.dataset.open = String(isOpen);
+        if (trigger instanceof HTMLButtonElement) {
+          trigger.dataset.open = String(isOpen);
+          trigger.setAttribute("aria-expanded", String(isOpen));
+        }
+        if (panel instanceof HTMLElement) {
+          panel.dataset.open = String(isOpen);
+        }
+      };
+
+      const closeMenus = (except) => {
+        menuWrappers.forEach((menu) => {
+          if (menu !== except) {
+            setMenuState(menu, false);
+          }
+        });
+      };
+
+      menuWrappers.forEach((menu) => {
+        const trigger = menu.querySelector("[data-menu-trigger]");
+        const panel = menu.querySelector("[data-mega-menu]");
+
+        if (!(trigger instanceof HTMLButtonElement) || !(panel instanceof HTMLElement)) {
+          return;
+        }
+
+        trigger.addEventListener("click", () => {
+          const shouldOpen = menu.dataset.open !== "true";
+          closeMenus(menu);
+          setMenuState(menu, shouldOpen);
+        });
+
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            closeMenus(menu);
+            setMenuState(menu, true);
+            panel.querySelector("a")?.focus();
+          }
+          if (event.key === "Escape") {
+            setMenuState(menu, false);
+            trigger.focus();
+          }
+        });
+
+        menu.addEventListener("mouseenter", () => {
+          closeMenus(menu);
+          setMenuState(menu, true);
+        });
+
+        menu.addEventListener("mouseleave", () => {
+          if (!menu.contains(document.activeElement)) {
+            setMenuState(menu, false);
+          }
+        });
+
+        menu.addEventListener("focusin", () => {
+          closeMenus(menu);
+          setMenuState(menu, true);
+        });
+
+        menu.addEventListener("focusout", () => {
+          window.setTimeout(() => {
+            if (!menu.contains(document.activeElement)) {
+              setMenuState(menu, false);
+            }
+          }, 0);
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        if (event.target instanceof Node && root.contains(event.target)) {
+          return;
+        }
+        closeMenus();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") {
+          return;
+        }
+        closeMenus();
+      });
+    });
+  };
+
+  setupDesktopNavigation();
+  document.addEventListener("astro:page-load", setupDesktopNavigation);
+</script>
