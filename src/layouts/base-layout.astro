@@ -39,6 +39,18 @@ const faviconHref = `${themeConfig.assets.favicon}?v=${themeConfig.assets.favico
     <meta property="og:url" content={canonicalUrl} />
     {image && <meta property="og:image" content={new URL(image, Astro.url).href} />}
 
+    <!-- Google tag (gtag.js) -->
+    <script async is:inline src="https://www.googletagmanager.com/gtag/js?id=G-JZX00GD5N9"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-JZX00GD5N9");
+    </script>
+
     <script is:inline>
       try {
         const savedTheme = localStorage.getItem("theme");
