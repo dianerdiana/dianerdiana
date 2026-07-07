@@ -1,34 +1,155 @@
 ---
 import BaseLayout from "../layouts/base-layout.astro";
-import { themeConfig } from "../configs/theme-config";
 
-const resumeSections = [
+const profile = {
+  name: "Dian Erdiana",
+  role: "Fullstack Developer",
+  location: "Majalengka",
+  email: "dianerdiana.de@gmail.com",
+  linkedin: "https://linkedin.com/in/dianerdiana",
+  github: "https://github.com/dianerdiana",
+  phone: "+62 838 2480 0565",
+  summary:
+    "Fullstack Developer experienced in code review and system refactoring using React.js, Node.js/Express, TypeScript, and Laravel. Successfully improved system performance by 45% through architectural refactoring and optimized database queries, with a strong focus on clean, maintainable, and scalable code.",
+};
+
+const experiences = [
   {
-    title: "Summary",
-    items: ["Full-stack developer focused on reliable delivery, maintainable structure, and clear technical decisions."],
+    company: "PT Talenta Indonesia Raya",
+    location: "Jakarta",
+    period: "Mar 2023 - Present",
+    role: "Fullstack Developer",
+    highlights: [
+      "Redesigned system architecture based on business workflow analysis using React.js and Express.js.",
+      "Improved system performance by 45% through architectural refactoring and optimized database queries.",
+      "Achieved stable production operation with 1,800+ concurrent users while reducing infrastructure and tooling costs by 30%.",
+    ],
   },
   {
-    title: "Experience",
-    items: ["Problem framing", "System design", "Incremental delivery", "Documentation for important decisions"],
+    company: "PT Ayo Menebar Kebaikan",
+    location: "Sukoharjo",
+    period: "May 2022 - Feb 2023",
+    role: "Fullstack Developer",
+    highlights: [
+      "Built end-to-end POS and OKR system features using Laravel, React.js, and PostgreSQL.",
+      "Implemented frontend, backend logic, REST APIs, and database operations in production systems.",
+      "Improved transaction and data processing performance by 35% through optimized UI flows and backend logic.",
+    ],
   },
   {
-    title: "Skills",
-    items: ["Astro", "React", "TypeScript", "TailwindCSS", "API design", "Database fundamentals"],
+    company: "Abukuma Co., Ltd.",
+    location: "Fukushima",
+    period: "Dec 2018 - Dec 2020",
+    role: "3D Laser Operator",
+    highlights: [
+      "Operated precision 3D laser machining systems with a strong focus on accuracy and process consistency.",
+      "Applied structured workflows and disciplined execution in a high-standard Japanese engineering environment.",
+    ],
+  },
+];
+
+const education = {
+  institution: "Universitas Siber Muhammadiyah",
+  location: "Yogyakarta",
+  period: "Mar 2023 - Present",
+  degree: "S1 Information Systems",
+};
+
+const activities = [
+  {
+    organization: "ASAH Led by Dicoding",
+    location: "Bandung",
+    period: "Jan 2026",
+    role: "React & Back-End with AI Cohort",
+    description:
+      "Completed intensive training and developed a production-ready fullstack web application. The capstone project was selected as the Best Capstone Project among program participants.",
+  },
+];
+
+const skillGroups = [
+  {
+    title: "Programming Language",
+    items: ["TypeScript", "JavaScript", "SQL", "PHP", "Python"],
   },
   {
-    title: "Certifications",
-    items: ["Frontend fundamentals", "Backend architecture", "Database design"],
+    title: "Framework & Libraries",
+    items: ["React.js", "Astro", "Nest.js", "Express.js", "Hapi Framework", "Next.js", "Laravel"],
   },
   {
-    title: "Languages",
-    items: ["Indonesian", "English"],
+    title: "Cloud & DevOps",
+    items: [
+      "Git",
+      "GitHub",
+      "GitHub Actions",
+      "Bitbucket Pipelines",
+      "Google Cloud Platform",
+      "Google Cloud Storage",
+      "Docker",
+      "Compute Engine",
+    ],
+  },
+  {
+    title: "Databases",
+    items: ["MySQL", "PostgreSQL", "Redis", "MongoDB", "Supabase"],
+  },
+  {
+    title: "Testing Tools",
+    items: ["Vitest", "Testing Library", "Cypress"],
+  },
+  {
+    title: "Other Tools",
+    items: ["RabbitMQ", "Postman", "ImageKit"],
+  },
+];
+
+const achievements = [
+  "Best Graduate Distinction of Program ASAH Dicoding | Dicoding Indonesia | Jan 2026",
+  "Best Capstone Project - Program ASAH Dicoding | Dicoding Indonesia | Jan 2026",
+];
+
+const certifications = [
+  "Menjadi Back-End Developer Expert | Dicoding Indonesia | Apr 2026",
+  "Menjadi React Web Developer Expert | Dicoding Indonesia | Feb 2026",
+  "Membangun Sistem Machine Learning | Dicoding Indonesia | May 2026",
+  "Belajar Fundamental Deep Learning | Dicoding Indonesia | Mar 2026",
+  "Japanese Language Proficiency Test (JLPT) N2 | Japan Educational Exchanges and Services (JEES) | Jan 2020",
+];
+
+const projects = [
+  {
+    title: "Forum Discussion API",
+    context: "Dicoding Course Project",
+    description:
+      "Developed a production-grade RESTful API for a forum discussion platform, applying Clean Architecture principles to separate domain logic, use cases, and infrastructure concerns, with automated quality gates via CI/CD and Git hooks.",
+    stack: "TypeScript, Node.js (ESM), Express.js, PostgreSQL, JWT, bcrypt, Vitest, Husky, lint-staged, GitHub Actions",
+    highlight:
+      "Enforced strict layered architecture from Domains to Applications, Infrastructures, and Interfaces with dependency injection, JWT-based authentication, refresh token rotation, and a CI pipeline with type-checking, linting, testing, and auto-deploy.",
+  },
+  {
+    title: "Book Doctor App",
+    context: "Smartbridge Capstone Project",
+    description:
+      "Built a healthcare booking platform that connects patients, doctors, and administrators, enabling doctor discovery, appointment scheduling, secure document uploads, and centralized management of medical services.",
+    stack:
+      "React 19, TypeScript, Vite, TanStack Router, TanStack Query, Axios, TailwindCSS v4, Express.js, MongoDB, Mongoose, Zod, JWT, Multer",
+    highlight:
+      "Streamlined appointment workflows with patient and doctor dashboards, role-based access control, doctor approval and schedule management, and admin tools for users, specialists, appointments, and reviews.",
+  },
+  {
+    title: "Kopilot Backend",
+    context: "Dicoding x DBM Skillsbuild Capstone Project",
+    description:
+      "Built a production-ready backend service for F&B business operations, providing authentication, master data management, transactions, stock tracking, file-based transaction import, operational insights, and ML-powered forecasting for internal dashboards.",
+    stack: "NestJS, TypeScript, PostgreSQL, Prisma, Redis, JWT, bcrypt, Google Gemini, Axios, CSV/XLSX processing",
+    highlight:
+      "Designed as a centralized API for users, roles, stores, products, ingredients, recipes, notifications, reports, and predictive analytics with a scalable modular architecture.",
   },
 ];
 ---
 
 <BaseLayout
   title="Resume"
-  description="A web-friendly resume for Dian Erdiana with summary, skills, experience, certifications, and languages."
+  description="Resume Dian Erdiana, Fullstack Developer experienced in React.js, Node.js, TypeScript, Laravel, system refactoring, and scalable web applications."
 >
   <section class="pt-32 pb-24 md:pt-40 md:pb-section">
     <div class="container">
@@ -36,22 +157,22 @@ const resumeSections = [
         <div>
           <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Resume</p>
           <h1 class="mt-4 text-4xl font-bold leading-tight text-text-primary md:text-[56px] md:leading-[1.1]">
-            A concise view of my engineering profile.
+            {profile.name}
           </h1>
-          <p class="mt-6 text-[17px] leading-[1.7] text-text-secondary">
-            This page is designed for recruiters and collaborators who need a structured overview before reading deeper project case studies.
-          </p>
+          <p class="mt-3 text-[22px] font-semibold leading-tight text-text-primary">{profile.role}</p>
+          <p class="mt-6 text-[17px] leading-[1.7] text-text-secondary">{profile.summary}</p>
+
           <div class="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-5 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:bg-hover hover:text-white"
-              href="/resume.pdf"
+              href="/Resume - Dian Erdiana.pdf"
               download
             >
               Download PDF
             </a>
             <a
               class="inline-flex h-12 items-center justify-center rounded-md border border-border bg-surface px-5 text-sm font-semibold text-text-primary no-underline transition duration-200 ease-out hover:border-primary hover:text-primary"
-              href={`mailto:${themeConfig.site.email}`}
+              href={`mailto:${profile.email}`}
             >
               Contact
             </a>
@@ -59,38 +180,149 @@ const resumeSections = [
         </div>
 
         <aside class="rounded-card border border-border bg-surface p-6 shadow-soft">
-          <p class="text-sm font-semibold text-text-primary">{themeConfig.site.name}</p>
-          <p class="mt-2 text-sm text-text-secondary">{themeConfig.site.tagline}</p>
-          <div class="mt-6 grid gap-3 text-sm text-text-secondary">
-            <a class="font-semibold no-underline hover:text-primary" href={`mailto:${themeConfig.site.email}`}>
-              {themeConfig.site.email}
+          <p class="text-sm font-semibold text-text-primary">Contact</p>
+          <div class="mt-5 grid gap-3 text-sm text-text-secondary">
+            <p>{profile.location}</p>
+            <a class="font-semibold no-underline hover:text-primary" href={`mailto:${profile.email}`}>
+              {profile.email}
             </a>
-            <a class="font-semibold no-underline hover:text-primary" href={themeConfig.links.github}>
-              GitHub
+            <a class="font-semibold no-underline hover:text-primary" href={profile.linkedin}>
+              linkedin.com/in/dianerdiana
             </a>
-            <a class="font-semibold no-underline hover:text-primary" href={themeConfig.links.linkedin}>
-              LinkedIn
+            <a class="font-semibold no-underline hover:text-primary" href={profile.github}>
+              github.com/dianerdiana
+            </a>
+            <a class="font-semibold no-underline hover:text-primary" href={`tel:${profile.phone.replaceAll(" ", "")}`}>
+              {profile.phone}
             </a>
           </div>
         </aside>
       </div>
 
-      <div class="mt-14 grid gap-5 md:grid-cols-2">
-        {
-          resumeSections.map((section) => (
-            <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
-              <h2 class="text-[22px] font-semibold leading-tight text-text-primary">{section.title}</h2>
-              <ul class="mt-5 grid gap-3">
-                {section.items.map((item) => (
+      <div class="mt-14 grid gap-10 lg:grid-cols-[minmax(0,760px)_minmax(280px,1fr)] lg:items-start">
+        <div class="grid gap-8">
+          <section>
+            <h2 class="text-3xl font-bold leading-tight text-text-primary md:text-[36px]">Working Experience</h2>
+            <div class="mt-6 grid gap-5">
+              {
+                experiences.map((experience) => (
+                  <article class="rounded-card border border-border bg-surface p-6 shadow-soft">
+                    <div class="flex flex-col gap-2 border-b border-border pb-4 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <h3 class="text-[22px] font-semibold leading-tight text-text-primary">{experience.company}</h3>
+                        <p class="mt-1 text-sm text-text-secondary">{experience.location}</p>
+                      </div>
+                      <p class="text-sm font-semibold text-primary">{experience.period}</p>
+                    </div>
+                    <p class="mt-4 text-sm font-semibold text-text-primary">{experience.role}</p>
+                    <ul class="mt-4 grid gap-3">
+                      {experience.highlights.map((highlight) => (
+                        <li class="flex gap-3 text-sm leading-6 text-text-secondary">
+                          <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+
+          <section>
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <h2 class="text-3xl font-bold leading-tight text-text-primary md:text-[36px]">Projects</h2>
+              <a class="text-sm font-semibold no-underline hover:text-primary" href={profile.github}>
+                More projects on GitHub
+              </a>
+            </div>
+            <div class="mt-6 grid gap-5">
+              {
+                projects.map((project) => (
+                  <article class="rounded-card border border-border bg-surface p-6 shadow-soft">
+                    <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{project.context}</p>
+                    <h3 class="mt-3 text-[22px] font-semibold leading-tight text-text-primary">{project.title}</h3>
+                    <p class="mt-3 text-sm leading-6 text-text-secondary">{project.description}</p>
+                    <p class="mt-4 text-sm leading-6 text-text-secondary">
+                      <span class="font-semibold text-text-primary">Tech Stack:</span> {project.stack}
+                    </p>
+                    <p class="mt-3 text-sm leading-6 text-text-secondary">{project.highlight}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+        </div>
+
+        <div class="grid gap-5">
+          <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
+            <h2 class="text-[22px] font-semibold leading-tight text-text-primary">Education</h2>
+            <div class="mt-5">
+              <p class="text-sm font-semibold text-text-primary">{education.institution}</p>
+              <p class="mt-1 text-sm text-text-secondary">{education.location}</p>
+              <p class="mt-3 text-sm font-semibold text-primary">{education.period}</p>
+              <p class="mt-3 text-sm text-text-secondary">{education.degree}</p>
+            </div>
+          </section>
+
+          <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
+            <h2 class="text-[22px] font-semibold leading-tight text-text-primary">Activities</h2>
+            <div class="mt-5 grid gap-5">
+              {
+                activities.map((activity) => (
+                  <article>
+                    <p class="text-sm font-semibold text-text-primary">{activity.organization}</p>
+                    <p class="mt-1 text-sm text-text-secondary">{activity.location} | {activity.period}</p>
+                    <p class="mt-3 text-sm font-semibold text-primary">{activity.role}</p>
+                    <p class="mt-3 text-sm leading-6 text-text-secondary">{activity.description}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+
+          <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
+            <h2 class="text-[22px] font-semibold leading-tight text-text-primary">Skills</h2>
+            <div class="mt-5 grid gap-5">
+              {
+                skillGroups.map((group) => (
+                  <div>
+                    <h3 class="text-sm font-semibold text-text-primary">{group.title}</h3>
+                    <p class="mt-2 text-sm leading-6 text-text-secondary">{group.items.join(", ")}</p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
+            <h2 class="text-[22px] font-semibold leading-tight text-text-primary">Achievements</h2>
+            <ul class="mt-5 grid gap-3">
+              {
+                achievements.map((achievement) => (
                   <li class="flex gap-3 text-sm leading-6 text-text-secondary">
                     <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                    <span>{item}</span>
+                    <span>{achievement}</span>
                   </li>
-                ))}
-              </ul>
-            </section>
-          ))
-        }
+                ))
+              }
+            </ul>
+          </section>
+
+          <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
+            <h2 class="text-[22px] font-semibold leading-tight text-text-primary">Certifications</h2>
+            <ul class="mt-5 grid gap-3">
+              {
+                certifications.map((certification) => (
+                  <li class="flex gap-3 text-sm leading-6 text-text-secondary">
+                    <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                    <span>{certification}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </section>
+        </div>
       </div>
     </div>
   </section>
