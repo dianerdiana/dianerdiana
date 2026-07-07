@@ -1,0 +1,58 @@
+---
+import NavigationLink from "./navigation-link.astro";
+import type { NavigationMenu } from "../../types/navigation";
+
+interface Props {
+  menu: NavigationMenu;
+}
+
+const { menu } = Astro.props;
+const featured = menu.featured;
+const menuId = `${menu.id}-mega-menu`;
+---
+
+<div
+  id={menuId}
+  class="pointer-events-none absolute left-1/2 top-full z-50 hidden w-[min(880px,calc(100vw-32px))] -translate-x-1/2 translate-y-2 opacity-0 transition duration-200 ease-out data-[open=true]:pointer-events-auto data-[open=true]:block data-[open=true]:translate-y-0 data-[open=true]:opacity-100"
+  data-mega-menu={menu.id}
+  role="menu"
+  aria-label={`${menu.label} navigation`}
+>
+  <div class="mt-3 grid gap-4 rounded-lg border border-border bg-surface p-4 shadow-soft md:grid-cols-[minmax(0,1fr)_280px]">
+    <div class="grid gap-1 md:grid-cols-2">
+      {
+        menu.children.map((child) => (
+          <div role="none">
+            <NavigationLink item={child} variant="mega" showDescription />
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      featured && (
+        <a
+          class="flex min-h-full flex-col justify-between rounded-md border border-border bg-background p-5 text-text-primary no-underline transition duration-200 ease-out hover:border-primary hover:text-primary"
+          href={featured.href}
+        >
+          <span>
+            <span class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">{featured.label}</span>
+            <span class="mt-4 block text-[22px] font-semibold leading-tight text-text-primary">{featured.title}</span>
+            <span class="mt-3 block text-sm leading-6 text-text-secondary">{featured.description}</span>
+          </span>
+          <span class="mt-6 text-sm font-semibold">View details</span>
+        </a>
+      )
+    }
+    {
+      menu.href && (
+        <a
+          class="rounded-md border border-border bg-background px-4 py-3 text-sm font-semibold text-text-primary no-underline transition duration-200 ease-out hover:border-primary hover:text-primary md:col-span-2"
+          href={menu.href}
+        >
+          View all {menu.label}
+        </a>
+      )
+    }
+  </div>
+</div>
