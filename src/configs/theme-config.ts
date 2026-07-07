@@ -23,30 +23,15 @@ export const themeConfig = {
     projects: '/projects',
     blog: '/blog',
     contact: '/#contact',
-    resume: '/',
+    resume: '/resume',
     email: `mailto:${email}`,
     linkedin: 'https://www.linkedin.com/',
     github: 'https://github.com/',
-  },
-  navigation: {
-    items: [
-      { label: 'About', href: '/#about' },
-      { label: 'Skills', href: '/#skills' },
-      { label: 'Experience', href: '/#experience' },
-      { label: 'Projects', href: '/projects' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Contact', href: '/#contact' },
-    ],
-    cta: {
-      label: 'Hire Me',
-      href: `mailto:${email}`,
-    },
   },
   socialLinks: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
     { label: 'GitHub', href: 'https://github.com/' },
     { label: 'Email', href: `mailto:${email}` },
-    { label: 'Resume', href: '/' },
   ],
   pages: {
     home: {
