@@ -20,7 +20,7 @@ export const themeConfig = {
   links: {
     home: '/',
     projects: '/projects',
-    blogs: '/blogs',
+    blog: '/blog',
     contact: '/#contact',
     resume: '/',
     email: `mailto:${email}`,
@@ -33,7 +33,7 @@ export const themeConfig = {
       { label: 'Skills', href: '/#skills' },
       { label: 'Experience', href: '/#experience' },
       { label: 'Projects', href: '/projects' },
-      { label: 'Blogs', href: '/blogs' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Contact', href: '/#contact' },
     ],
     cta: {
@@ -63,11 +63,11 @@ export const themeConfig = {
         'Each card is designed to show the problem context, implementation decisions, outcomes, and technologies used so projects are easy to compare.',
       indexTitle: 'Project index',
     },
-    blogs: {
-      title: 'Blogs',
+    blog: {
+      title: 'Blog',
       description:
         'A collection of Dian Erdiana articles about engineering, frontend work, portfolios, and technical decisions.',
-      eyebrow: 'Blogs',
+      eyebrow: 'Blog',
       heading: 'Notes on engineering decisions and clear interfaces.',
       descriptionText:
         'Short articles about how structure, tradeoffs, and interface details can make software feel clearer and more trustworthy.',
@@ -86,8 +86,8 @@ export const themeConfig = {
       ],
     },
     articleDetail: {
-      backLabel: 'Back to blogs',
-      backHref: '/blogs',
+      backLabel: 'Back to blog',
+      backHref: '/blog',
     },
   },
   sections: {
@@ -220,7 +220,7 @@ export const themeConfig = {
       heading: 'Notes on craft and clarity.',
       description:
         'Short notes on engineering, interfaces, and technical decision-making.',
-      cta: { label: 'View all articles', href: '/blogs' },
+      cta: { label: 'View all articles', href: '/blog' },
     },
     certificates: {
       eyebrow: 'Certificates',
