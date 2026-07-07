@@ -1,7 +1,11 @@
 ---
+import { navigationConfig } from "../configs/navigation-config";
 import { themeConfig } from "../configs/theme-config";
 
-const contactLinks = themeConfig.socialLinks;
+const contactLinks = [
+  ...themeConfig.socialLinks,
+  { label: navigationConfig.cta.label, href: navigationConfig.cta.href },
+];
 ---
 
 <section id="contact" class="border-t border-border bg-surface py-24 md:py-section">
