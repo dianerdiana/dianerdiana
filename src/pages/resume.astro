@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/base-layout.astro";
+import { themeConfig } from "../configs/theme-config";
+
+const resumeSections = [
+  {
+    title: "Summary",
+    items: ["Full-stack developer focused on reliable delivery, maintainable structure, and clear technical decisions."],
+  },
+  {
+    title: "Experience",
+    items: ["Problem framing", "System design", "Incremental delivery", "Documentation for important decisions"],
+  },
+  {
+    title: "Skills",
+    items: ["Astro", "React", "TypeScript", "TailwindCSS", "API design", "Database fundamentals"],
+  },
+  {
+    title: "Certifications",
+    items: ["Frontend fundamentals", "Backend architecture", "Database design"],
+  },
+  {
+    title: "Languages",
+    items: ["Indonesian", "English"],
+  },
+];
+---
+
+<BaseLayout
+  title="Resume"
+  description="A web-friendly resume for Dian Erdiana with summary, skills, experience, certifications, and languages."
+>
+  <section class="pt-32 pb-24 md:pt-40 md:pb-section">
+    <div class="container">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,760px)_minmax(280px,1fr)] lg:items-start">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Resume</p>
+          <h1 class="mt-4 text-4xl font-bold leading-tight text-text-primary md:text-[56px] md:leading-[1.1]">
+            A concise view of my engineering profile.
+          </h1>
+          <p class="mt-6 text-[17px] leading-[1.7] text-text-secondary">
+            This page is designed for recruiters and collaborators who need a structured overview before reading deeper project case studies.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-5 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:bg-hover hover:text-white"
+              href="/resume.pdf"
+              download
+            >
+              Download PDF
+            </a>
+            <a
+              class="inline-flex h-12 items-center justify-center rounded-md border border-border bg-surface px-5 text-sm font-semibold text-text-primary no-underline transition duration-200 ease-out hover:border-primary hover:text-primary"
+              href={`mailto:${themeConfig.site.email}`}
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+
+        <aside class="rounded-card border border-border bg-surface p-6 shadow-soft">
+          <p class="text-sm font-semibold text-text-primary">{themeConfig.site.name}</p>
+          <p class="mt-2 text-sm text-text-secondary">{themeConfig.site.tagline}</p>
+          <div class="mt-6 grid gap-3 text-sm text-text-secondary">
+            <a class="font-semibold no-underline hover:text-primary" href={`mailto:${themeConfig.site.email}`}>
+              {themeConfig.site.email}
+            </a>
+            <a class="font-semibold no-underline hover:text-primary" href={themeConfig.links.github}>
+              GitHub
+            </a>
+            <a class="font-semibold no-underline hover:text-primary" href={themeConfig.links.linkedin}>
+              LinkedIn
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="mt-14 grid gap-5 md:grid-cols-2">
+        {
+          resumeSections.map((section) => (
+            <section class="rounded-card border border-border bg-surface p-6 shadow-soft">
+              <h2 class="text-[22px] font-semibold leading-tight text-text-primary">{section.title}</h2>
+              <ul class="mt-5 grid gap-3">
+                {section.items.map((item) => (
+                  <li class="flex gap-3 text-sm leading-6 text-text-secondary">
+                    <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
