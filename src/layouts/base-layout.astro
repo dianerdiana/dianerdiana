@@ -51,6 +51,26 @@ const faviconHref = `${themeConfig.assets.favicon}?v=${themeConfig.assets.favico
       gtag("config", "G-JZX00GD5N9");
     </script>
 
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function (window, document, scriptTag, dataLayerName, containerId) {
+        window[dataLayerName] = window[dataLayerName] || [];
+        window[dataLayerName].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+
+        const firstScript = document.getElementsByTagName(scriptTag)[0];
+        const gtmScript = document.createElement(scriptTag);
+        const dataLayerParam = dataLayerName !== "dataLayer" ? `&l=${dataLayerName}` : "";
+
+        gtmScript.async = true;
+        gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${containerId}${dataLayerParam}`;
+        firstScript.parentNode.insertBefore(gtmScript, firstScript);
+      })(window, document, "script", "dataLayer", "GTM-M4BP4HBQ");
+    </script>
+    <!-- End Google Tag Manager -->
+
     <script is:inline>
       try {
         const savedTheme = localStorage.getItem("theme");
@@ -61,6 +81,17 @@ const faviconHref = `${themeConfig.assets.favicon}?v=${themeConfig.assets.favico
     </script>
   </head>
   <body class="bg-background text-text-primary">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe 
+        src="https://www.googletagmanager.com/ns.html?id=GTM-M4BP4HBQ"
+        height="0" 
+        width="0" 
+        style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <Navbar />
     <main>
       <slot />
